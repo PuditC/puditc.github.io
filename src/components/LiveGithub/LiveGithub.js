@@ -23,7 +23,7 @@ function TiltCard({ children, className = "", ...rest }) {
   );
 }
 
-const GH_USER = "oampudit";
+const GH_USER = "PuditC";
 const API = "https://api.github.com";
 
 // Module-level cache: the component unmounts/remounts on every section change,

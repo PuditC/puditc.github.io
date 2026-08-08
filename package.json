@@ -2,6 +2,7 @@
   "name": "puditportfolio",
   "version": "2.0.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@react-three/drei": "^9.92.7",
     "@react-three/fiber": "^8.15.16",

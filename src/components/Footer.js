@@ -5,7 +5,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 
 const LINKS = [
-  { href: "https://github.com/oampudit", icon: AiFillGithub, label: "GitHub" },
+  { href: "https://github.com/PuditC", icon: AiFillGithub, label: "GitHub" },
   { href: "https://gitlab.com/oampudit", icon: AiFillGitlab, label: "GitLab" },
   { href: "https://www.linkedin.com/in/puditc", icon: FaLinkedinIn, label: "LinkedIn" },
   { href: "mailto:pudit.chok@gmail.com", icon: HiOutlineMail, label: "Email" },

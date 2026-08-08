@@ -10,7 +10,7 @@ export const projects = [
     description: "Board game on mobile",
     imgPath: mysteryagents,
     demoLink: "https://mystery-agents.web.app/",
-    githubLink: "https://github.com/oampudit/mysteryagents-web",
+    githubLink: "https://github.com/PuditC/mysteryagents-web",
     category: "mobile",
     technologies: ["Flutter", "Dart", "Firebase", "Realtime DB"],
     features: [
@@ -61,7 +61,7 @@ Future<void> dealRoles(String roomId) async {
       "BTC Clock is a web app that displays real-time Bitcoin block height, price, satoshis per unit of currency, local time, and halving estimate.",
     imgPath: btcclock,
     demoLink: "https://blockclock-online.firebaseapp.com/",
-    githubLink: "https://github.com/oampudit/blockclock-online",
+    githubLink: "https://github.com/PuditC/blockclock-online",
     category: "web",
     technologies: ["Flutter", "Dart", "Firebase Hosting", "Mempool API"],
     features: [

@@ -37,7 +37,7 @@ const ABOUT = [
   "role:       Mid-Level Software Developer @ PTT Digital Solutions",
   "focus:      Full-stack — C# / .NET / Angular / Azure, Flutter on mobile",
   "location:   Bangkok, Thailand",
-  "github:     github.com/oampudit",
+  "github:     github.com/PuditC",
   "linkedin:   linkedin.com/in/puditc",
 ];
 
@@ -62,7 +62,7 @@ const EXPERIENCE = experience
 
 const CONTACT = [
   "email:      pudit.chok@gmail.com",
-  "github:     https://github.com/oampudit",
+  "github:     https://github.com/PuditC",
   "linkedin:   https://linkedin.com/in/puditc",
 ];
 

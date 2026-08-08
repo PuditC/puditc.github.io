@@ -8,7 +8,7 @@ function Github() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
       <GitHubCalendar
-        username="oampudit"
+        username="PuditC"
         blockSize={15}
         blockMargin={5}
         color="#818cf8"

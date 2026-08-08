@@ -41,7 +41,7 @@ App-level `keydown` listener in `App.js`:
 | `src/components/Hero3D/Hero3D.js` | React Three Fiber scene: distorted torus knot + orbiting spheres, mouse-reactive. Lazy-loaded via `React.lazy` |
 | `src/components/Projects/Projects.js` | Filter tabs + `CaseStudyModal` (problem / architecture / code snippet / metrics / lessons) |
 | `src/components/Terminal/Terminal.js` | Keyboard-triggered CLI overlay. Commands: `help`, `about`, `skills`, `experience`, `projects`, `open <id>`, `cat <id>`, `goto <section>`, `clear`, `exit`. Tab-completion + history (↑/↓) |
-| `src/components/LiveGithub/LiveGithub.js` | Pulls GitHub public API (`/users/oampudit/events`, `/repos`) for recent activity + lang stats + repo list + contribution calendar. Gracefully handles 403 rate-limit |
+| `src/components/LiveGithub/LiveGithub.js` | Pulls GitHub public API (`/users/PuditC/events`, `/repos`) for recent activity + lang stats + repo list + contribution calendar. Gracefully handles 403 rate-limit |
 | `src/components/ExperienceTimeline/ExperienceTimeline.js` | Work history, data hardcoded inline |
 | `src/components/Skills3D/Skills3DAlternative.js` | CSS 3D cube skill display |
 | `src/components/About/About.js` | About, composing `AboutCard`, `Techstack`, `Toolstack`, `Github` |

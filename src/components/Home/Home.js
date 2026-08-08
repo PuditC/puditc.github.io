@@ -19,8 +19,8 @@ const MARQUEE = [
   "C#", ".NET Core", "Angular", "Azure", "Flutter", "SQL Server", "React", "Firebase",
 ];
 
-const GH_USER = "oampudit";
-const GH_LINK = "https://github.com/oampudit";
+const GH_USER = "PuditC";
+const GH_LINK = "https://github.com/PuditC";
 const LINKEDIN_LINK = "https://www.linkedin.com/in/puditc";
 const EMAIL_LINK = "mailto:pudit.chok@gmail.com";
 
@@ -35,7 +35,7 @@ const FB_LANGS = [
 ];
 const FB_FEED = [
   { verb: "push", arrow: true, repo: "blockclock-online", when: "2d" },
-  { verb: "push", arrow: true, repo: "oampudit.github.io", when: "1w" },
+  { verb: "push", arrow: true, repo: "puditc.github.io", when: "1w" },
   { verb: "push", arrow: true, repo: "mysteryagents-web", when: "3w" },
   { verb: "fork", arrow: false, repo: "alt-tab-macos", when: "1mo" },
   { verb: "create", arrow: false, repo: "multiPlayBomberMan", when: "2mo" },

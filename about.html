@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — Pudit Chokmeesuk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="poster.css">
+<script>(()=>{try{const t=localStorage.getItem('pf-poster-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+<style>
+.intro{padding-block:clamp(24px,4vw,44px);border-bottom:1px solid var(--rule)}
+.intro .bio{grid-column:span 6}
+.intro .bio p{margin:0 0 18px;font-size:clamp(1rem,1.5vw,1.28rem);line-height:1.45;letter-spacing:-.015em;text-wrap:pretty}
+.intro .bio p:last-child{margin-bottom:0}
+.intro .bio p b{background:var(--tint);padding:0 .1em;box-decoration-break:clone}
+.intro .por{grid-column:8 / span 5}
+.intro .por .fr{border:1px solid var(--rule);background:var(--tint);aspect-ratio:4/4.6;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.intro .por .fr img{width:100%;height:100%;object-fit:contain;object-position:bottom center;display:block}
+.intro .por .cap{margin-top:8px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+/* timeline */
+.role{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,24px);padding-block:clamp(22px,3vw,36px);border-bottom:1px solid var(--rule);position:relative}
+.role .when{grid-column:span 2}
+.role .when .p{font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);display:block}
+.role .when .ix{display:block;margin-top:10px;font-weight:700;font-size:2.6rem;line-height:1;letter-spacing:-.05em;color:var(--rule)}
+.role .who{grid-column:span 4}
+.role .who h3{margin:0 0 4px;font-weight:700;font-size:clamp(1.15rem,2vw,1.6rem);letter-spacing:-.03em;text-transform:uppercase;line-height:1}
+.role .who .rl{color:var(--ink);font-size:.95rem}
+.role .who .lc{display:block;margin-top:8px;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.role .what{grid-column:span 6}
+.role ul{margin:0;padding:0;list-style:none}
+.role li{position:relative;padding-left:22px;margin-bottom:9px;font-size:.92rem;color:var(--mute);text-wrap:pretty}
+.role li::before{content:"";position:absolute;left:0;top:.58em;width:11px;height:1px;background:var(--ink)}
+.role .tg{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px}
+.role .tg span{font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);border:1px solid var(--rule);padding:3px 6px}
+/* two-up tiles */
+.tile{border:1px solid var(--rule);padding:clamp(14px,1.6vw,20px)}
+.tile h4{margin:0 0 10px;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.tile.s3{grid-column:span 3}.tile.s4{grid-column:span 4}.tile.s6{grid-column:span 6}
+.tile .hd{font-weight:700;font-size:1.1rem;letter-spacing:-.02em;margin-bottom:4px}
+.tile p{margin:0;color:var(--mute);font-size:.88rem}
+.tile ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.tile ul li{font-size:.86rem;color:var(--mute);display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--rule);padding-bottom:6px}
+.tile ul li:last-child{border-bottom:0;padding-bottom:0}
+.tile ul li b{color:var(--ink);font-weight:400}
+.gap{margin-top:clamp(16px,2.4vw,28px)}
+@media(max-width:1100px){.intro .bio{grid-column:span 12}.intro .por{grid-column:1 / span 6;margin-top:22px}.role .when{grid-column:span 12}.role .when .ix{display:none}.role .who{grid-column:span 5}.role .what{grid-column:span 7}.tile.s3,.tile.s4{grid-column:span 6}.tile.s6{grid-column:span 12}}
+@media(max-width:680px){.intro .por{grid-column:1 / span 12}.role .who,.role .what{grid-column:span 12}.tile.s3,.tile.s4,.tile.s6{grid-column:span 12}}
+</style>
+</head>
+<body>
+<div class="grid-ov"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<div class="wrap">
+  <div class="top">
+    <span class="l"><a href="index.html">← Portfolio</a></span>
+    <nav><a href="index.html" data-sc>Work</a><a href="about.html" aria-current="page" data-sc>About</a><a href="signals.html" data-sc>Signals</a><a href="contact.html" data-sc>Contact</a></nav>
+    <span class="r"><button class="tgl" data-tgl>Dark</button></span>
+  </div>
+
+  <header class="poster">
+    <h1 class="pt mid"><span><i>About</i></span></h1>
+    <div class="pt out mid"><span><i>Pudit C.</i></span></div>
+    <div class="blk"><span>Senior developer</span><span>Bangkok</span><span>Six years, three companies</span><span class="sp">Freelance &amp; private projects only</span></div>
+  </header>
+
+  <section class="intro g12">
+    <div class="bio">
+      <p>I started on the infrastructure side — Windows Server, Active Directory and Exchange for banks, exchanges and insurers. <b>Fixing other people's systems at 2am is a good education in what to build.</b></p>
+      <p>Since 2021 I've been writing them instead: a group-insurance core rewrite, a customer claims app in Flutter, and now web and application modules on Azure as a senior developer at PTT Digital Solutions. The work is usually less about new features than about making the second year of a system survivable.</p>
+      <p>On the side I ship small things end to end — a Bitcoin block clock, a gold-portfolio tracker, a running-form analyser, a multiplayer deduction game — mostly to keep the deploy-to-production muscle working.</p>
+    </div>
+    <div class="por">
+      <div class="fr"><img src="assets/profile.png" alt="Pudit Chokmeesuk"></div>
+      <div class="cap"><span>Pudit Chokmeesuk</span><span>Senior developer · Bangkok</span></div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>Career timeline</h2><span class="n">Full detail</span><span class="c">2019 → present</span></div>
+  <div class="rv3">
+    <article class="role">
+      <div class="when"><span class="p">Nov 2023 — Present</span><span class="ix">03</span></div>
+      <div class="who"><h3>PTT Digital Solutions</h3><span class="rl">Senior software developer</span><span class="lc">Bangkok, Thailand</span></div>
+      <div class="what">
+        <ul>
+          <li>Full-stack delivery of web and application solutions on Azure.</li>
+          <li>Designed and deployed modules with clean business integration.</li>
+          <li>Hardened systems via Azure Functions, Web Apps and Key Vault.</li>
+          <li>Authored module documentation, runbooks and onboarding playbooks.</li>
+        </ul>
+        <div class="tg"><span>C#</span><span>.NET Core</span><span>Azure</span><span>Angular</span><span>SQL Server</span></div>
+      </div>
+    </article>
+    <article class="role">
+      <div class="when"><span class="p">Apr 2021 — Nov 2023</span><span class="ix">02</span></div>
+      <div class="who"><h3>Bangkok Life Assurance</h3><span class="rl">Software developer</span><span class="lc">Bangkok, Thailand</span></div>
+      <div class="what">
+        <ul>
+          <li>Rewrote the group-insurance core; lifted performance and security across the board.</li>
+          <li>Designed the customer mobile app: claims, notifications, history.</li>
+          <li>Owned full release cycles in C#, .NET Core, Oracle, Dart and Flutter.</li>
+        </ul>
+        <div class="tg"><span>C#</span><span>.NET Core</span><span>Oracle</span><span>Dart</span><span>Flutter</span></div>
+      </div>
+    </article>
+    <article class="role">
+      <div class="when"><span class="p">Aug 2019 — Jan 2021</span><span class="ix">01</span></div>
+      <div class="who"><h3>BizCon Solutions</h3><span class="rl">System engineer</span><span class="lc">Bangkok, Thailand</span></div>
+      <div class="what">
+        <ul>
+          <li>Operated infrastructure for SET, Betagro and FWD.</li>
+          <li>Migrations and installations: Windows Server, Active Directory, Exchange.</li>
+          <li>Reduced incident frequency through proactive monitoring.</li>
+        </ul>
+        <div class="tg"><span>Windows Server</span><span>Active Directory</span><span>Exchange</span><span>System admin</span></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="g12 gap rv3">
+    <div class="tile s3"><h4>Education</h4><div class="hd">Master of Business Management</div><p>Mahidol University · 2017–2020 · GPA 3.35</p></div>
+    <div class="tile s3"><h4>Education</h4><div class="hd">B.Eng, Electrical Engineering</div><p>KMUTNB · 2015–2019 · GPA 3.24</p></div>
+    <div class="tile s6"><h4>Where the two meet</h4><p>An engineering degree explains the systems instinct; a business degree explains why I ask what a module is for before designing it. Both are why I write the runbook.</p></div>
+  </div>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <h2>Ship it, watch where it leaks, then fix the shape of the thing — <em>not the symptom.</em></h2>
+    <div class="sub">Mystery Agents shipped with clients able to read the whole role map out of the payload in dev tools. The fix was not a patch; the draw moved server-side and the client kept only its own key.</div>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>Toolkit</h2><span class="n">What I reach for</span><span class="c">By layer</span></div>
+  <div class="g12 gap rv3">
+    <div class="tile s3"><h4>Languages</h4><ul><li><b>C#</b><span>Daily</span></li><li><b>Dart</b><span>Daily</span></li><li><b>TypeScript / JS</b><span>Daily</span></li><li><b>Python</b><span>Tooling</span></li><li><b>SQL / PL-SQL</b><span>Daily</span></li></ul></div>
+    <div class="tile s3"><h4>Frameworks</h4><ul><li><b>.NET Core</b><span>Services</span></li><li><b>Angular</b><span>Enterprise UI</span></li><li><b>React + Vite</b><span>Product UI</span></li><li><b>Flutter</b><span>Mobile / web</span></li><li><b>FastAPI / Express</b><span>Small APIs</span></li></ul></div>
+    <div class="tile s3"><h4>Data</h4><ul><li><b>SQL Server</b><span>Primary</span></li><li><b>Oracle</b><span>Insurance core</span></li><li><b>Firebase RTDB</b><span>Realtime</span></li><li><b>SQLite</b><span>Local-first</span></li></ul></div>
+    <div class="tile s3"><h4>Cloud &amp; ops</h4><ul><li><b>Azure Functions</b><span>Serverless</span></li><li><b>Azure Web Apps</b><span>Hosting</span></li><li><b>Key Vault</b><span>Secrets</span></li><li><b>Firebase Hosting</b><span>Static</span></li><li><b>Windows Server / AD</b><span>Background</span></li></ul></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="end">
+    <div class="big"><span class="m" style="color:var(--faint)">Contact</span><a href="contact.html">Get in touch →</a></div>
+    <div class="col"><h4>Code</h4><a href="https://github.com/PuditC" target="_blank" rel="noopener">github.com/PuditC ↗</a></div>
+    <div class="col"><h4>Pages</h4><a href="index.html">Work ↗</a><a href="signals.html">Signals ↗</a><a href="contact.html">Contact ↗</a><a href="case-prompt-plus.html">Case study ↗</a></div>
+    <div class="col"><h4>Taking on</h4><p>Freelance &amp; private projects</p><p>Bangkok · UTC+7</p></div>
+  </div>
+  <footer><span>About — Poster grid</span><span>Bangkok · UTC+7</span></footer>
+</div>
+<script src="poster.js"></script>
+</body>
+</html>

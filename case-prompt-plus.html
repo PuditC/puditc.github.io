@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prompt Plus Accounting — Case study · Pudit Chokmeesuk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="poster.css">
+<script>(()=>{try{const t=localStorage.getItem('pf-poster-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+<style>
+.lede{padding-block:clamp(24px,4vw,44px);border-bottom:1px solid var(--rule)}
+.lede .tx{grid-column:span 7}
+.lede .tx p{margin:0 0 18px;font-size:clamp(1rem,1.5vw,1.28rem);line-height:1.45;letter-spacing:-.015em;text-wrap:pretty}
+.lede .tx p:last-child{margin-bottom:0}
+.lede .tx b{background:var(--tint);padding:0 .1em;box-decoration-break:clone}
+.lede .fk{grid-column:9 / span 4;border:1px solid var(--rule);padding:clamp(14px,1.6vw,20px);align-self:start}
+.lede .fk h4{margin:0 0 12px;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.lede .fk dl{margin:0;display:flex;flex-direction:column}
+.lede .fk .r{display:grid;grid-template-columns:88px 1fr;gap:12px;padding-block:8px;border-bottom:1px solid var(--rule);font-size:.86rem}
+.lede .fk .r:last-child{border-bottom:0}
+.lede .fk dt{font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding-top:3px}
+.lede .fk dd{margin:0;color:var(--ink)}
+.shots{display:grid;grid-template-columns:repeat(12,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:clamp(16px,2.4vw,28px)}
+.shots figure{grid-column:span 4;margin:0;background:var(--paper);padding:0}
+.shots .fr{aspect-ratio:16/10;border-bottom:1px solid var(--rule);overflow:hidden}
+.shots .fr img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;filter:grayscale(1) contrast(1.06);transition:filter .7s,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.shots figure:hover .fr img{filter:none;transform:scale(1.04)}
+.shots figcaption{padding:12px 14px;font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:space-between;gap:10px}
+.parts{margin-top:clamp(16px,2.4vw,28px)}
+.part{grid-column:span 4;border:1px solid var(--rule);padding:clamp(14px,1.6vw,20px);display:flex;flex-direction:column;gap:10px}
+.part .k{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.part h3{margin:0;font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
+.part p{margin:0;color:var(--mute);font-size:.88rem;text-wrap:pretty}
+.part code{font-family:var(--mono);font-size:.7rem;color:var(--ink);background:var(--tint);padding:2px 5px}
+.flow{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--rule);font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.flow b{color:var(--ink);font-weight:400}
+.dec{grid-column:span 6;padding-block:clamp(20px,3vw,32px);border-top:1px solid var(--rule)}
+.dec .n{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.dec h3{margin:10px 0 10px;font-weight:700;font-size:clamp(1.1rem,1.9vw,1.5rem);letter-spacing:-.025em;line-height:1.1}
+.dec p{margin:0 0 12px;color:var(--mute);font-size:.92rem;text-wrap:pretty}
+.dec p:last-child{margin-bottom:0}
+pre{margin:14px 0 0;padding:14px;border:1px solid var(--rule);background:var(--tint);overflow-x:auto;font-family:var(--mono);font-size:.68rem;line-height:1.7;color:var(--ink)}
+pre .c{color:var(--faint)}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.84rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule)}
+th{font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:400}
+td code{font-family:var(--mono);font-size:.72rem}
+td .au{font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.nums{grid-column:span 3;text-align:left}
+.nums b{display:block;font-weight:700;font-size:clamp(2rem,4.4vw,3.4rem);letter-spacing:-.04em;line-height:1}
+.nums span{display:block;margin-top:8px;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+[data-theme=dark] .nums span{color:rgba(0,0,0,.55)}
+.left{grid-column:span 6}
+.left ul{margin:0;padding:0;list-style:none}
+.left li{position:relative;padding-left:24px;margin-bottom:10px;color:var(--mute);font-size:.92rem}
+.left li::before{content:"□";position:absolute;left:0;top:-.05em;color:var(--ink);font-size:.8rem}
+.nav-p{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,24px);padding-block:clamp(24px,4vw,44px);border-top:2px solid var(--ink)}
+.nav-p a{grid-column:span 6;display:flex;flex-direction:column;gap:8px;padding:clamp(16px,2vw,24px);border:1px solid var(--rule);transition:background .35s,color .35s}
+.nav-p a:hover{background:var(--ink);color:var(--paper)}
+.nav-p .card{grid-column:span 6;display:flex;flex-direction:column;gap:8px;padding:clamp(16px,2vw,24px);border:1px solid var(--rule)}
+.nav-p .card>span{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.mail-btn.sm .txt{font-size:clamp(1.1rem,2.2vw,1.7rem);border-bottom-width:1px}
+.nav-p a span{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.nav-p a b{font-weight:700;font-size:clamp(1.1rem,2.2vw,1.7rem);letter-spacing:-.03em}
+@media(max-width:1100px){.nav-p .card{grid-column:span 12}.lede .tx{grid-column:span 12}.lede .fk{grid-column:1 / span 12;margin-top:20px}.shots figure{grid-column:span 6}.part{grid-column:span 6}.dec{grid-column:span 12}.nums{grid-column:span 6}.left{grid-column:span 12}.nav-p a{grid-column:span 12}}
+@media(max-width:680px){.shots figure,.part{grid-column:span 12}.nums{grid-column:span 6}}
+</style>
+</head>
+<body>
+<div class="grid-ov"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<div class="wrap">
+  <div class="top">
+    <span class="l"><a href="index.html">← Portfolio</a></span>
+    <nav><a href="index.html" data-sc>Work</a><a href="about.html" data-sc>About</a><a href="signals.html" data-sc>Signals</a><a href="contact.html" data-sc>Contact</a></nav>
+    <span class="r"><button class="tgl" data-tgl>Dark</button></span>
+  </div>
+
+  <header class="poster">
+    <span class="m" style="color:var(--faint)">Case study 01 — Client work</span>
+    <h1 class="pt mid"><span><i>Prompt Plus</i></span></h1>
+    <div class="pt out mid"><span><i>Accounting</i></span></div>
+    <div class="blk"><span>Solo build</span><span>React · Vite · Express</span><span>2026</span><span class="sp">Bilingual TH / EN</span></div>
+  </header>
+
+  <section class="lede g12">
+    <div class="tx">
+      <p>An accounting firm needed a website that its own staff could keep current: seven pages, two languages, articles and news posted weekly. <b>Nobody in the office was going to run a deploy to change a phone number.</b></p>
+      <p>So the site reads all of its content from an API, and a second small app — the admin — writes it. The only thing that stays in code is the part that must not drift: the Thai statutory filing calendar, where a wrong due date is a fine rather than a typo.</p>
+    </div>
+    <div class="fk">
+      <h4>Project facts</h4>
+      <dl>
+        <div class="r"><dt>Client</dt><dd>Prompt Plus Accounting, Bangkok</dd></div>
+        <div class="r"><dt>Role</dt><dd>Sole engineer — architecture, both front-ends, API</dd></div>
+        <div class="r"><dt>Scope</dt><dd>7-page bilingual site, admin CMS, content API</dd></div>
+        <div class="r"><dt>Stack</dt><dd>React · Vite · react-router · Express · JSON storage</dd></div>
+        <div class="r"><dt>Status</dt><dd>Feature complete; hardening before production</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="shots rv3">
+    <figure><div class="fr"><img src="assets/shot-promptplus.jpg" alt="Prompt Plus home page, Thai"></div><figcaption><span>01 Home</span><span>main-web</span></figcaption></figure>
+    <figure><div class="fr"><img src="assets/shot-promptplus-calendar.png" alt="Thai statutory filing calendar for 2569"></div><figcaption><span>02 Filing calendar</span><span>main-web</span></figcaption></figure>
+    <figure><div class="fr ph-media"><span>Screenshot — admin content editor</span></div><figcaption><span>03 Admin</span><span>admin-web</span></figcaption></figure>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>Three parts</h2><span class="n">One server, two apps</span><span class="c">Architecture</span></div>
+  <div class="parts g12 rv3">
+    <div class="part"><span class="k">Part 01 — main-web</span><h3>Public site</h3><p>Seven pages on react-router hash routing, so it drops onto any static host. Every string is a <code>{th, en}</code> pair, switchable on every page. Content arrives from <code>/api/content</code>; if the API is unreachable the app falls back to the seed bundled at build time, so the site never renders empty.</p></div>
+    <div class="part"><span class="k">Part 02 — admin-web</span><h3>Admin app</h3><p>Posts (articles and news, both languages) and site content. The editing forms are generated from the shape of the content JSON — add a field to <code>content.json</code> and the form picks it up with no admin code change. New posts appear on the site immediately; the home page pulls the three latest.</p></div>
+    <div class="part"><span class="k">Part 03 — server</span><h3>Content API</h3><p>An Express app that serves both builds and stores content as JSON files on disk — no database to administer for a site this size. Single-admin login issues a bearer token; reads are public, every write is authenticated.</p></div>
+  </div>
+  <div class="flow"><b>Browser</b><span>→</span><b>GET /api/content</b><span>→</span><b>content.json</b><span>·</span><b>Admin</b><span>→</span><b>PUT /api/content</b><span>(Bearer)</span><span>→</span><b>same file</b><span>·</span><b>API down</b><span>→</span><b>bundled seed</b></div>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>Decisions</h2><span class="n">Three that mattered</span><span class="c">And why</span></div>
+  <div class="g12 rv3">
+    <div class="dec">
+      <span class="n">Decision 01</span>
+      <h3>Regulatory logic stays in code. Copy stays with the client.</h3>
+      <p>Everything editable is editable — except the filing calendar. Due dates for ภ.ง.ด.1/3/53, ภ.พ.30 and สปส.1-10 are monthly rules, with annual forms layered onto specific months. That is logic, not copy, so it lives in one module with the year at the top and is reviewed rather than typed into a CMS field.</p>
+<pre><span class="c">/* Thai statutory filing data for the 2569 (2026) calendar.
+   Regulatory logic stays in code — page copy is admin-managed content. */</span>
+export const MONTHLY = [
+  ["ภ.ง.ด.1/3/53", "PND1/3/53", "ภาษีหัก ณ ที่จ่าย", "Withholding tax", …, 7],
+  ["ภ.พ.30",       "PP30",      "ภาษีมูลค่าเพิ่ม",   "VAT return",     …, 15],
+  ["สปส.1-10",     "SSO 1-10",  "เงินสมทบประกันสังคม", "Social security", …, 15],
+];</pre>
+    </div>
+    <div class="dec">
+      <span class="n">Decision 02</span>
+      <h3>The admin form is generated from the content, not hand-built.</h3>
+      <p>A hand-written form per page would have meant an admin release every time the firm wanted a new FAQ row or a price line. Instead the editor walks the content JSON and renders a field per leaf, grouped by page. Adding a field on the server is the whole change.</p>
+      <p>Reads are public and writes need a bearer token, so the eight routes below are the entire API surface — small enough to keep in your head.</p>
+      <table>
+        <thead><tr><th>Method</th><th>Path</th><th>Auth</th></tr></thead>
+        <tbody>
+          <tr><td><code>POST</code></td><td><code>/api/login</code></td><td><span class="au">Public</span></td></tr>
+          <tr><td><code>GET</code></td><td><code>/api/content</code></td><td><span class="au">Public</span></td></tr>
+          <tr><td><code>PUT</code></td><td><code>/api/content</code></td><td><span class="au">Bearer</span></td></tr>
+          <tr><td><code>GET</code></td><td><code>/api/posts</code></td><td><span class="au">Public</span></td></tr>
+          <tr><td><code>POST · PUT · DELETE</code></td><td><code>/api/posts/:id</code></td><td><span class="au">Bearer</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="dec">
+      <span class="n">Decision 03</span>
+      <h3>JSON files instead of a database.</h3>
+      <p>Seven pages and a weekly post do not need Postgres. Content and posts are two JSON files read and written synchronously, which makes backup a file copy and rollback a checkout. If the firm outgrows it, the API shape stays and the storage layer is the only thing that changes.</p>
+    </div>
+    <div class="dec">
+      <span class="n">Decision 04</span>
+      <h3>A quote wizard instead of a contact form.</h3>
+      <p>Prospective clients ask what bookkeeping will cost before they ask anything else. Three steps — business type, volume, services — return an indicative fee on the page, so the first email arrives already qualified.</p>
+    </div>
+  </div>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <div class="nums"><b>7</b><span>Pages, fully editable</span></div>
+    <div class="nums"><b>2</b><span>Languages, every string</span></div>
+    <div class="nums"><b>0</b><span>Rebuilds to publish</span></div>
+    <div class="nums"><b>8</b><span>API routes total</span></div>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>Still open</h2><span class="n">Before production</span><span class="c">Honest list</span></div>
+  <div class="g12 rv3">
+    <div class="left">
+      <ul>
+        <li>Rotate <code>ADMIN_PASSWORD</code> off the default and run behind HTTPS.</li>
+        <li>Tokens are in memory — a server restart logs the admin out. Persist or move to signed tokens.</li>
+        <li>Replace the image placeholders with the firm's own photography.</li>
+        <li>Wire the contact, quote and newsletter forms to email or LINE; today they are front-end only.</li>
+      </ul>
+    </div>
+    <div class="left">
+      <p style="margin:0;color:var(--mute);font-size:.92rem">The static HTML version that preceded this build is still in the repo for reference. Keeping it there was deliberate: it is the fastest way to show the client what changed, and it costs nothing to leave behind.</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="nav-p">
+    <a href="index.html"><span>Back to</span><b>All work →</b></a>
+    <a href="contact.html"><span>Questions about this build</span><b>Contact →</b></a>
+  </div>
+  <footer><span>Case study 01 — Prompt Plus Accounting</span><span>Bangkok · UTC+7</span></footer>
+</div>
+<script src="poster.js"></script>
+</body>
+</html>

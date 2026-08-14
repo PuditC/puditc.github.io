@@ -1,1 +1,159 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="./favicon.png"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#0a0b10"/><meta name="google-site-verification" content="PYk1ahApAF5cJ9xkC5feaRmv4ByDMNDqkv8YdiKH9N8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"/><meta name="description" content="Pudit Chokmeesuk — full-stack engineer (C#, .NET, Angular, Azure, Flutter) based in Bangkok. Portfolio, projects, and live GitHub activity."/><meta name="keywords" content="Pudit Chokmeesuk, Pudit, portfolio, full-stack developer, C#, .NET, Angular, Azure, Flutter"/><meta property="og:title" content="Pudit Chokmeesuk — Full-Stack Engineer"/><meta property="og:description" content="Portfolio, projects, and live GitHub activity."/><meta property="og:type" content="website"/><link rel="manifest" href="./manifest.json"/><title>Pudit's Portfolio</title><script defer="defer" src="./static/js/main.99006054.js"></script><link href="./static/css/main.db942d45.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pudit Chokmeesuk — Full-stack engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="poster.css">
+<script>(()=>{try{const t=localStorage.getItem('pf-poster-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+<style>
+.hero-b{padding-bottom:clamp(26px,4vw,50px);border-bottom:1px solid var(--rule);align-items:start}
+.hero-b .st{grid-column:span 6;font-size:clamp(1.05rem,1.9vw,1.6rem);font-weight:500;letter-spacing:-.02em;line-height:1.24;margin:0;text-wrap:pretty}
+.hero-b .st b{background:var(--tint);padding:0 .12em;box-decoration-break:clone}
+.hero-b .fx{grid-column:span 3}
+.hero-b .fx h4{margin:0 0 8px;font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.hero-b .fx p{margin:0;font-size:.9rem;color:var(--mute)}
+.hero-b .fx p b{color:var(--ink);font-weight:500}
+.plates{display:grid;grid-template-columns:repeat(12,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:clamp(16px,2.4vw,28px)}
+.pl{grid-column:span 4;background:var(--paper);padding:clamp(16px,1.8vw,24px);min-height:clamp(240px,29vw,340px);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.pl.w6{grid-column:span 6}
+.pl .ix{position:absolute;right:8px;bottom:-.22em;font-weight:700;font-size:clamp(4rem,9vw,8.5rem);line-height:1;letter-spacing:-.06em;color:var(--rule);transition:transform .6s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.pl:hover{background:var(--ink);color:var(--paper)}
+.pl:hover .ix{color:rgba(255,255,255,.12);transform:translateY(-6px)}
+.pl:hover .k,.pl:hover p,.pl:hover .tg span{color:rgba(255,255,255,.66);border-color:rgba(255,255,255,.28)}
+.pl .k{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.pl h3{margin:10px 0 8px;font-weight:700;font-size:clamp(1.2rem,2.1vw,1.85rem);letter-spacing:-.03em;line-height:1;text-transform:uppercase}
+.pl p{margin:0;font-size:.88rem;color:var(--mute);max-width:38ch;text-wrap:pretty}
+.pl .shot{margin-top:16px;border:1px solid var(--rule);overflow:hidden;aspect-ratio:16/9;background:var(--tint)}
+.pl .shot img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.06);transition:filter .7s,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.pl:hover .shot img{filter:none;transform:scale(1.05)}
+.pl .ft{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.pl .tg{display:flex;flex-wrap:wrap;gap:5px}
+.pl .tg span{font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);border:1px solid var(--rule);padding:3px 6px}
+.pl .mv{font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;white-space:nowrap}
+.pl.cta{justify-content:center;background:var(--tint)}
+.pl.cta h3{font-size:clamp(1.4rem,3.2vw,2.6rem);margin:0 0 12px}
+.pl.cta .go{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;margin-top:18px;display:inline-flex;gap:10px;transition:gap .3s}
+.pl.cta:hover .go{gap:18px}
+@media(max-width:1100px){.pl,.pl.w6{grid-column:span 6}.hero-b .st{grid-column:span 12}.hero-b .fx{grid-column:span 4}}
+@media(max-width:680px){.pl,.pl.w6{grid-column:span 12}.hero-b .fx{grid-column:span 12}}
+</style>
+</head>
+<body>
+<div class="grid-ov"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<div class="wrap">
+  <div class="top">
+    <span class="l">Portfolio — Edition 2026</span>
+    <nav><a href="index.html" aria-current="page" data-sc>Work</a><a href="about.html" data-sc>About</a><a href="signals.html" data-sc>Signals</a><a href="contact.html" data-sc>Contact</a></nav>
+    <span class="r"><button class="tgl" data-tgl>Dark</button></span>
+  </div>
+
+  <header class="poster">
+    <h1 class="pt"><span><i>Pudit</i></span></h1>
+    <div class="pt out"><span><i>Chokmeesuk</i></span></div>
+    <div class="blk"><span>Senior developer</span><span>Bangkok · UTC+7</span><span>Six years in production</span><span class="sp">Freelance &amp; private projects only</span></div>
+    <div class="hero-b g12">
+      <p class="st">I write the parts nobody demos: <b>the schema that survives year two,</b> the reconnect path, the runbook. Insurance core systems, Azure platforms and Flutter apps that people use on a Monday morning.</p>
+      <div class="fx"><h4>Now</h4><p><b>PTT Digital Solutions</b><br>Senior developer, Nov 2023 → present. Web and application modules on Azure.</p></div>
+      <div class="fx"><h4>Taking on</h4><p>Freelance and private projects — <b>not looking for a company role.</b></p></div>
+    </div>
+  </header>
+</div>
+
+<div class="mq" data-mq><div class="mq-t">
+  <b>C#</b><span>/</span><b>.NET Core</b><span>/</span><b>Angular</b><span>/</span><b>Azure Functions</b><span>/</span><b>Key Vault</b><span>/</span><b>SQL Server</b><span>/</span><b>Oracle</b><span>/</span><b>Flutter</b><span>/</span><b>Dart</b><span>/</span><b>Firebase</b><span>/</span><b>React</b><span>/</span><b>FastAPI</b><span>/</span>
+</div></div>
+
+<div class="wrap sec" id="work">
+  <div class="sh"><h2 data-sc>Selected work</h2><span class="n">Eight plates</span><span class="c">Hover to develop</span></div>
+  <div class="plates rv3">
+    <a class="pl w6" href="https://blockclock.crafnia.com/" target="_blank" rel="noopener">
+      <span class="ix">01</span><span class="k">2023 → now — Realtime · Web</span><h3>BlockClock</h3>
+      <p>A $400 hardware block clock, rebuilt as a tab on a spare tablet. One WebSocket, static hosting, nothing to keep alive.</p>
+      <div class="shot"><img src="assets/shot-blockclock.jpg" alt="BlockClock — live Bitcoin block height"></div>
+      <div class="ft"><div class="tg"><span>React</span><span>Vite</span><span>mempool API</span></div><span class="mv">&lt;500ms · Live ↗</span></div>
+    </a>
+    <a class="pl w6" href="https://mystery-agents.web.app/" target="_blank" rel="noopener">
+      <span class="ix">02</span><span class="k">2024 — Realtime · Mobile</span><h3>Mystery Agents</h3>
+      <p>Pass-and-play on one phone, or an online room where Cloud Functions deal the roles — so no client ever holds the full map.</p>
+      <div class="shot"><img src="assets/shot-mysteryagents.jpg" alt="Mystery Agents — game lobby"></div>
+      <div class="ft"><div class="tg"><span>Flutter</span><span>Dart</span><span>Firebase RTDB</span></div><span class="mv">&lt;80ms · Live ↗</span></div>
+    </a>
+    <a class="pl w6" href="case-prompt-plus.html">
+      <span class="ix">03</span><span class="k">2026 — Client work · CMS</span><h3>Prompt Plus Accounting</h3>
+      <p>A bilingual accounting-firm site where staff edit every page, price and post themselves — plus a Thai statutory filing calendar kept in code.</p>
+      <div class="shot"><img src="assets/shot-promptplus.jpg" alt="Prompt Plus Accounting — home page"></div>
+      <div class="ft"><div class="tg"><span>React</span><span>Vite</span><span>Express</span></div><span class="mv">Case study →</span></div>
+    </a>
+    <div class="pl w6">
+      <span class="ix">04</span><span class="k">Ongoing — Finance</span><h3>SapTo</h3>
+      <p>Multi-lot P&amp;L on physical gold, marked to the live Thai association buy-back price, with alerts pushed to LINE or Telegram. Gold first, then stocks and crypto.</p>
+      <div class="shot"><img src="assets/shot-sapto.jpg" alt="SapTo — gold portfolio dashboard"></div>
+      <div class="ft"><div class="tg"><span>FastAPI</span><span>SQLite</span></div><span class="mv">No build step</span></div>
+    </div>
+    <div class="pl">
+      <span class="ix">05</span><span class="k">2026 — Realtime · Web</span><h3>AltClock</h3>
+      <p>The altcoin counterpart to BlockClock: live prices for everything that isn't Bitcoin, and a graveyard ranked by distance from all-time high.</p>
+      <div class="shot"><img src="assets/shot-altclock.jpg" alt="AltClock — live altcoin price clock"></div>
+      <div class="ft"><div class="tg"><span>React</span><span>Vite</span></div><span class="mv">Prototype</span></div>
+    </div>
+    <div class="pl">
+      <span class="ix">06</span><span class="k">Ongoing — Vision</span><h3>RunForm</h3>
+      <p>Running-form analysis from one side-view slow-mo clip. Rule-based, on-device, no model and no upload.</p>
+      <div class="shot"><img src="assets/shot-runform.png" alt="RunForm — capture, analyse and read a clip"></div>
+      <div class="ft"><div class="tg"><span>Flutter</span><span>MediaPipe</span></div><span class="mv">0 cloud calls</span></div>
+    </div>
+    <div class="pl">
+      <span class="ix">07</span><span class="k">Ongoing — Productivity</span><h3>SmartSchedule</h3>
+      <p>One task at a time, drawn from the gaps in your Google Calendar — the app decides what comes next so you don't negotiate with a list.</p>
+      <div class="shot"><img src="assets/shot-smartschedule.png" alt="SmartSchedule — focus-mode screens"></div>
+      <div class="ft"><div class="tg"><span>Flutter</span><span>Google Calendar</span></div><span class="mv">In design</span></div>
+    </div>
+    <div class="pl w6">
+      <span class="ix">08</span><span class="k">2024 — Payments · Protocol</span><h3>RegoLich</h3>
+      <p>Lightning as settlement, Nostr as transport. Signed results any relay can verify, so nothing depends on our server.</p>
+      <div class="shot"><img src="assets/regolich.png" alt="RegoLich"></div>
+      <div class="ft"><div class="tg"><span>React</span><span>LNURL</span><span>Nostr</span></div><span class="mv">Archived</span></div>
+    </div>
+    <a class="pl w6 cta" href="about.html">
+      <span class="ix">↗</span><span class="k">Background</span><h3>Six years,<br>three companies</h3>
+      <p>Infrastructure engineer to full-stack developer: insurance core rewrites, an Azure module practice, and mobile apps in both stores.</p>
+      <span class="go">Read the full timeline <b>→</b></span>
+    </a>
+  </div>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <h2>Five years of insurance and enterprise work taught me one thing: <em>the boring parts are the product.</em></h2>
+    <div class="sub">Group-insurance core rewrite → performance and security<br>Customer claims app → Flutter, both stores<br>Azure modules → Functions, Web Apps, Key Vault<br>Every one of them → docs and a runbook</div>
+  </div>
+</div>
+
+<div class="wrap sec" id="index">
+  <div class="sh"><h2 data-sc>Index</h2><span class="n">Path · education · smaller builds</span><span class="c">2019 → 2026</span></div>
+  <div class="rv3">
+    <a class="tbl" href="about.html"><span class="a">Nov 2023 — now</span><div class="b"><h3>PTT Digital Solutions</h3><span>Senior software developer</span></div><div class="c2">Full-stack web and application modules on Azure; hardening via Functions, Web Apps and Key Vault; documentation and onboarding playbooks.</div><span class="d">C# · Azure · Angular</span></a>
+    <a class="tbl" href="about.html"><span class="a">Apr 2021 — Nov 2023</span><div class="b"><h3>Bangkok Life Assurance</h3><span>Software developer</span></div><div class="c2">Rewrote the group-insurance core for performance and security; designed the customer claims app; owned full release cycles.</div><span class="d">.NET · Oracle · Flutter</span></a>
+    <a class="tbl" href="about.html"><span class="a">Aug 2019 — Jan 2021</span><div class="b"><h3>BizCon Solutions</h3><span>System engineer</span></div><div class="c2">Infrastructure for SET, Betagro and FWD — Windows Server, Active Directory and Exchange migrations, with proactive monitoring.</div><span class="d">Windows Server · AD</span></a>
+    <div class="tbl"><span class="a">Education</span><div class="b"><h3>Mahidol · KMUTNB</h3><span>M.B.M. 2017–2020 · B.Eng Electrical 2015–2019</span></div><div class="c2">Business management on top of electrical engineering — which is mostly why I like the systems side of software.</div><span class="d">GPA 3.35 / 3.24</span></div>
+    <div class="tbl"><span class="a">Also built</span><div class="b"><h3>Coach Dashboard</h3><span>Fitness-coach client management</span></div><div class="c2">Macro targets, progress photos, weekly charts and check-in reminders that land in Discord. In daily use.</div><span class="d">Flutter Web · Firebase</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="end">
+    <div class="big"><span class="m" style="color:var(--faint)">Contact</span><a href="contact.html">Get in touch →</a></div>
+    <div class="col"><h4>Code</h4><a href="https://github.com/PuditC" target="_blank" rel="noopener">github.com/PuditC ↗</a></div>
+    <div class="col"><h4>Pages</h4><a href="about.html">About ↗</a><a href="signals.html">Signals ↗</a><a href="contact.html">Contact ↗</a><a href="case-prompt-plus.html">Case study ↗</a></div>
+    <div class="col"><h4>Taking on</h4><p>Freelance &amp; private projects</p><p>Bangkok · UTC+7</p></div>
+  </div>
+  <footer><span>Poster grid — Helvetica &amp; Space Mono</span><span>Bangkok · UTC+7</span></footer>
+</div>
+
+<script src="poster.js"></script>
+</body>
+</html>

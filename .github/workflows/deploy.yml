@@ -5,6 +5,7 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+# The site is plain HTML/CSS/JS in ./site — there is no build step.
 # Pages for this repo is served from the `gh-pages` branch (the same target
 # `npm run deploy` uses), so the workflow publishes there instead of via
 # actions/deploy-pages — that needs the Pages source set to "GitHub Actions".
@@ -22,20 +23,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./site

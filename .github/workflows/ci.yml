@@ -1,5 +1,5 @@
-# CI ของเว็บ Portfolio (React/CRA → GitHub Pages)
-# กลไก deploy เดิม (deploy.yml / gh-pages) คงไว้ตามเดิม — ไฟล์นี้เพิ่มด่าน smoke + security ก่อนเท่านั้น
+# CI ของเว็บ Portfolio (static HTML/CSS/JS → GitHub Pages)
+# กลไก deploy อยู่ใน deploy.yml (publish ./site) — ไฟล์นี้เป็นด่าน smoke + security ก่อนเท่านั้น
 name: CI
 
 "on":
@@ -17,17 +17,15 @@ concurrency:
 
 jobs:
   smoke:
-    name: Smoke (build + test)
+    name: Smoke (link check)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      - run: npm test -- --watchAll=false --passWithNoTests
+      - name: Check every local link in site/ resolves
+        run: node scripts/check-links.mjs
 
   security:
     name: Security (secret scan)

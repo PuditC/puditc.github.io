@@ -2,72 +2,101 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## What ships
+
+The live portfolio is **`site/` — plain HTML, CSS and JS. No build step, no framework, no
+dependencies.** Open `site/index.html` in a browser and you are looking at production.
+
+Switched from Create React App to static on **2026-08-14** (owner's call). Reasons: a portfolio
+is text and images, so server-rendered HTML indexes far better than a CRA bundle that paints
+nothing until JS runs; and it drops the ~230KB three.js chunk plus the whole build pipeline.
+
+The old React app still sits in `src/` + `public/` but **is no longer deployed**. It is kept only
+until the owner confirms deletion — do not add features to it.
+
 ## Commands
 
 ```bash
-npm install        # Install dependencies
-npm start          # Start dev server at localhost:3000
-npm run build      # Production build → ./build/
-npm test           # Run tests (watch mode)
-npm run deploy     # Manual deploy to GitHub Pages (runs build first)
+npm run check      # smoke test: every local link in site/ resolves (scripts/check-links.mjs)
+npm run deploy     # manual publish of site/ to GitHub Pages via gh-pages
 ```
 
-## Architecture
+There is no dev server. To preview, serve the folder with anything static, e.g.
+`python -m http.server 8080 --directory site`, then open `http://127.0.0.1:8080/`.
 
-This is a **Create React App** portfolio site using React 18. It does **not** use React Router — navigation is handled by a single `currentSection` state in `App.js` that conditionally renders one section at a time.
+## Structure
 
-### Navigation pattern
+```
+site/
+  index.html             Work — poster hero, 8 project plates, statement band, index table
+  about.html             Timeline, portrait panel
+  signals.html           Live GitHub activity (client-side fetch of the public API)
+  contact.html           Contact, with click-to-reveal email
+  case-prompt-plus.html  Case study — Prompt Plus Accounting
+  poster.css             The whole design system (see below)
+  poster.js              The whole behaviour layer (see below)
+  assets/                Screenshots, portrait, project art
+  .nojekyll              Keep GitHub Pages from running Jekyll over the files
+scripts/check-links.mjs  CI smoke test
+```
 
-`App.js` holds `currentSection` state and passes a `navigate` callback down to `Navbar` and `Home`. Components trigger section switches by calling `navigate('skills')` etc. The callback also scrolls to top on change.
+Page filenames are the URLs. Renaming a page means updating every link to it — `npm run check`
+is what catches a miss.
 
-Adding a new section requires:
-1. Adding a case in `App.js`'s `renderSection()` switch
-2. Adding an entry to `navItems` in `Navbar.js`
-3. If the section should also be reachable from the terminal, add it to `SECTIONS` in `src/components/Terminal/Terminal.js`
+### The design system — `poster.css`
 
-### Keyboard UX
+Poster grid: Helvetica display type over a fixed 12-column rule overlay, Space Mono for every
+label, monochrome paper/ink. Light is the default; `[data-theme=dark]` swaps six custom
+properties and nothing else, so **never hard-code a colour — use `var(--ink)`, `var(--paper)`,
+`var(--mute)`, `var(--faint)`, `var(--rule)`, `var(--tint)`, `var(--graph)`.**
 
-App-level `keydown` listener in `App.js`:
-- `` ` `` (backtick) or `Ctrl/Cmd + K` → toggle terminal overlay
-- `Esc` → close terminal
+Shared classes worth knowing before writing new markup: `.wrap` (page gutter), `.g12` (12-col
+grid), `.top` (nav bar), `.pt` (poster type, `.out` for the outlined variant), `.blk` (inverted
+strip), `.sh` (section head), `.tbl` (index row), `.band` (inverted statement), `.end` +
+`footer`, `.mq` (marquee), `.rv3` (scroll reveal), `.ph-media` (hatched image placeholder).
 
-### Key components
+Page-specific CSS lives in a `<style>` block in that page's `<head>` — that is deliberate, so a
+page can be reasoned about on its own. Only promote a rule into `poster.css` when a second page
+needs it.
 
-| Component | Purpose |
-|-----------|---------|
-| `src/App.js` | Root — owns `currentSection` + `termOpen`, registers global hotkeys, renders `LiveGithub` below Home |
-| `src/components/Navbar.js` | Fixed navbar; includes `github` section |
-| `src/components/Home/Home.js` | Clean hero (lazy-loads `Hero3D`), skills, services, stats — no duplicate animation layers |
-| `src/components/Hero3D/Hero3D.js` | React Three Fiber scene: distorted torus knot + orbiting spheres, mouse-reactive. Lazy-loaded via `React.lazy` |
-| `src/components/Projects/Projects.js` | Filter tabs + `CaseStudyModal` (problem / architecture / code snippet / metrics / lessons) |
-| `src/components/Terminal/Terminal.js` | Keyboard-triggered CLI overlay. Commands: `help`, `about`, `skills`, `experience`, `projects`, `open <id>`, `cat <id>`, `goto <section>`, `clear`, `exit`. Tab-completion + history (↑/↓) |
-| `src/components/LiveGithub/LiveGithub.js` | Pulls GitHub public API (`/users/PuditC/events`, `/repos`) for recent activity + lang stats + repo list + contribution calendar. Gracefully handles 403 rate-limit |
-| `src/components/ExperienceTimeline/ExperienceTimeline.js` | Work history, data hardcoded inline |
-| `src/components/Skills3D/Skills3DAlternative.js` | CSS 3D cube skill display |
-| `src/components/About/About.js` | About, composing `AboutCard`, `Techstack`, `Toolstack`, `Github` |
+### The behaviour layer — `poster.js`
 
-### Data
+One file, one `DOMContentLoaded` handler, all opt-in through data attributes:
 
-Project data is the **one thing that's centralized** — `src/data/projects.js` is the single source of truth used by `Projects.js`, `Terminal.js`, and the case-study modal. Each project carries `problem`, `architecture[]`, `codeSnippet{language,code}`, `metrics[]`, `lessons`, `features[]` in addition to the basic card fields.
+| Attribute | Effect |
+|-----------|--------|
+| `data-tgl` | Element becomes the light/dark toggle. Choice persists in `localStorage` under `pf-poster-theme` |
+| `data-sc` | Text scrambles on hover |
+| `data-mq` | Container becomes an auto-scrolling, drag-nudgeable marquee (its child is duplicated for the seam) |
+| `data-mail` + `data-dom` | Click reveals `mail@dom`, second click copies. Assembled at runtime so the address is not in the HTML, and it never fires a `mailto:` |
+| `.rv3` | Fades/rises in via IntersectionObserver, with a timeout fallback so content can never stay invisible |
 
-Everything else (experience, education, skills, services, stats) is still hardcoded inline in its respective component — fine for a single-author portfolio.
+Theme is also applied by a tiny inline script in each `<head>`, before paint — that is what
+stops a light flash on a dark-theme reload. Keep it when adding a page.
 
-### Styling
+### The work plates — `site/index.html`
 
-Each component has a co-located `.css` file. Global styles in `src/style.css` and `src/App.css`. Theme: dark backgrounds with `#ff4757` as primary accent. Animations via **framer-motion v11** — note this version renamed `useViewportScroll` → `useScroll`; older code in this repo may still need updating if seen.
+Eight `.pl` cards in a 12-column grid: `.pl` spans 4, `.pl.w6` spans 6. **Every row must add up
+to 12** or the grid's rule-coloured background shows through as a grey block. Current tiling is
+`6+6 / 6+6 / 4+4+4 / 6+6`. Adding or removing a card means re-tiling the whole set.
 
-### 3D / bundle
+Screenshots are greyscaled by CSS and only regain colour on hover — so capture them at normal
+colour and let the stylesheet do it.
 
-`three`, `@react-three/fiber`, `@react-three/drei` ship in a separate lazy chunk (~230KB gz) so initial paint isn't blocked. A `@mediapipe/tasks-vision` source-map warning appears in builds — it's a transitive dep from drei and safe to ignore.
+## Deployment
 
-### Deployment
+`.github/workflows/deploy.yml` publishes `./site` to the `gh-pages` branch on every push to
+`main` — no install, no build. `.github/workflows/ci.yml` runs the link check and a gitleaks
+secret scan.
 
-GitHub Actions (`.github/workflows/deploy.yml`) builds and deploys to GitHub Pages on every push to `main`. Uses `actions/deploy-pages@v4` — no `gh-pages` branch is required.
+Live at **https://puditc.github.io/**. The repo was renamed `oampudit.github.io` →
+`puditc.github.io` on 2026-08-14 so it matches the `PuditC` handle — a GitHub user-site only
+serves at the root when the two match. The local folder still carries the old name; that is
+cosmetic and affects nothing.
 
-### Styling
+## Conventions
 
-Each component has a co-located `.css` file. Global styles are in `src/style.css` and `src/App.css`. The theme uses dark backgrounds with red (`#ff4757`) as the primary accent color. Animations are done with **framer-motion** throughout.
-
-### Deployment
-
-GitHub Actions (`.github/workflows/deploy.yml`) automatically builds and deploys to GitHub Pages on every push to `main`. The workflow uses `actions/deploy-pages@v4` — no `gh-pages` branch is required.
+- The résumé PDF is deliberately **not** published. It lives in `.private/` (gitignored) and
+  there is no download link anywhere on the site — the owner hands it out directly.
+- Project cards state what is actually true today. If a project's status changes, the card and
+  `site/signals.html`'s band both need updating.

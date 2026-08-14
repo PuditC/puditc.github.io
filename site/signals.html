@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signals — Pudit Chokmeesuk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="poster.css">
+<script>(()=>{try{const t=localStorage.getItem('pf-poster-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+<style>
+.lede{padding-block:clamp(24px,4vw,44px);border-bottom:1px solid var(--rule)}
+.lede p{grid-column:span 7;margin:0;font-size:clamp(1rem,1.5vw,1.28rem);line-height:1.45;letter-spacing:-.015em;text-wrap:pretty}
+.lede p b{background:var(--tint);padding:0 .1em;box-decoration-break:clone}
+.lede .st{grid-column:9 / span 4;border:1px solid var(--rule);padding:clamp(14px,1.6vw,20px);align-self:start}
+.lede .st h4{margin:0 0 8px;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.lede .st p{grid-column:auto;font-size:.86rem;color:var(--mute)}
+.tile{border:1px solid var(--rule);padding:clamp(14px,1.6vw,20px);min-height:132px;display:flex;flex-direction:column;justify-content:space-between}
+.tile.s3{grid-column:span 3}.tile.s6{grid-column:span 6}.tile.s12{grid-column:span 12}
+.tile h4{margin:0;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.tile .big{font-weight:700;font-size:clamp(2.2rem,4.6vw,3.6rem);letter-spacing:-.04em;line-height:1}
+.tile .cap{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.lang{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+.lang .r{display:grid;grid-template-columns:110px 1fr 40px;gap:12px;align-items:center;font-family:var(--mono);font-size:.6rem;letter-spacing:.04em}
+.lang .t{height:6px;background:var(--tint);overflow:hidden}
+.lang .t i{display:block;height:100%;background:var(--ink);width:0}
+.lang .p{text-align:right;color:var(--mute)}
+.feed{margin-top:14px;display:flex;flex-direction:column}
+.feed .e{display:grid;grid-template-columns:132px 1fr auto;gap:14px;padding:8px 0;border-top:1px solid var(--rule);font-size:.84rem;align-items:baseline}
+.feed .e .ty{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.feed .e .rp{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.feed .e .wn{font-family:var(--mono);font-size:.56rem;color:var(--mute);white-space:nowrap}
+.repos{margin-top:clamp(16px,2.4vw,28px)}
+.rp-row{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,24px);padding-block:14px;border-bottom:1px solid var(--rule);align-items:baseline;transition:background .3s}
+.rp-row:hover{background:var(--tint)}
+.rp-row .nm{grid-column:span 4;font-weight:700;font-size:1rem;letter-spacing:-.02em;overflow:hidden;text-overflow:ellipsis}
+.rp-row .ds{grid-column:span 5;color:var(--mute);font-size:.86rem}
+.rp-row .lg{grid-column:span 2;font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.rp-row .up{grid-column:span 1;text-align:right;font-family:var(--mono);font-size:.56rem;color:var(--faint);white-space:nowrap}
+@media(max-width:1100px){.lede p,.lede .st{grid-column:span 12}.lede .st{grid-column:1 / span 12;margin-top:20px}.tile.s3{grid-column:span 6}.tile.s6{grid-column:span 12}.rp-row .nm{grid-column:span 5}.rp-row .ds{grid-column:span 7}.rp-row .lg,.rp-row .up{display:none}}
+@media(max-width:680px){.tile.s3{grid-column:span 12}.lang .r{grid-template-columns:84px 1fr 36px}.feed .e{grid-template-columns:1fr auto}.feed .e .ty{display:none}.rp-row .nm,.rp-row .ds{grid-column:span 12}}
+</style>
+</head>
+<body>
+<div class="grid-ov"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<div class="wrap">
+  <div class="top">
+    <span class="l"><a href="index.html">← Portfolio</a></span>
+    <nav><a href="index.html" data-sc>Work</a><a href="about.html" data-sc>About</a><a href="signals.html" aria-current="page" data-sc>Signals</a><a href="contact.html" data-sc>Contact</a></nav>
+    <span class="r"><button class="tgl" data-tgl>Dark</button></span>
+  </div>
+
+  <header class="poster">
+    <h1 class="pt mid"><span><i>Live</i></span></h1>
+    <div class="pt out mid"><span><i>Signals</i></span></div>
+    <div class="blk"><span>Public GitHub data</span><span>github.com/PuditC</span><span id="blkState">Fetching…</span><span class="sp">Refreshes on load</span></div>
+  </header>
+
+  <section class="lede g12">
+    <p>Claims on a portfolio are easy. <b>These numbers are pulled live from the GitHub API when the page loads</b> — repository count, the language split across them, and the last public events on my account. If a figure looks thin, that is the honest figure.</p>
+    <div class="st"><h4>How to read it</h4><p>Only public repositories and public events appear here. Client work lives in private repositories, so the visible activity is mostly side projects and tooling. Unauthenticated API calls are rate-limited, so tiles may fall back to a dash.</p></div>
+  </section>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>Account</h2><span class="n">Counts and cadence</span><span class="c" id="sigState">Fetching…</span></div>
+  <div class="g12 rv3" style="margin-top:clamp(16px,2.4vw,28px)">
+    <div class="tile s3"><h4>Public repos</h4><span class="big" id="gRepos">—</span><span class="cap">github.com/PuditC</span></div>
+    <div class="tile s3"><h4>Last public push</h4><span class="big" id="gPush">—</span><span class="cap" id="gSince">Member since —</span></div>
+    <div class="tile s6"><h4>Languages by repo</h4><div class="lang" id="gLang"><span class="cap">Loading…</span></div></div>
+    <div class="tile s12"><h4>Recent public activity</h4><div class="feed" id="gFeed"><span class="cap">Loading…</span></div></div>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>Recently updated</h2><span class="n">Public repositories</span><span class="c">Newest first</span></div>
+  <div class="repos rv3" id="gRepoList"><div class="rp-row"><span class="nm">Loading…</span></div></div>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <h2>The interesting number is not how many repositories exist. <em>It is which ones are still running.</em></h2>
+    <div class="sub">BlockClock → live on its own domain since 2023<br>Mystery Agents → playable, three platforms<br>Coach Dashboard → in daily use by a coach<br>Prompt Plus → client site, hardening before launch</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="end">
+    <div class="big"><span class="m" style="color:var(--faint)">Next</span><a href="contact.html">Contact →</a></div>
+    <div class="col"><h4>Code</h4><a href="https://github.com/PuditC" target="_blank" rel="noopener">github.com/PuditC ↗</a></div>
+    <div class="col"><h4>Pages</h4><a href="index.html">Work ↗</a><a href="about.html">About ↗</a><a href="case-prompt-plus.html">Case study ↗</a></div>
+    <div class="col"><h4>Taking on</h4><p>Freelance &amp; private projects</p><p>Bangkok · UTC+7</p></div>
+  </div>
+  <footer><span>Signals — Poster grid</span><span>Bangkok · UTC+7</span></footer>
+</div>
+
+<script src="poster.js"></script>
+<script>
+(async()=>{
+const U='PuditC',S=document.getElementById('sigState'),B=document.getElementById('blkState'),J=u=>fetch(u).then(r=>r.ok?r.json():Promise.reject(r.status));
+const ago=d=>{const s=(Date.now()-new Date(d))/1000;if(s<3600)return Math.round(s/60)+'m ago';if(s<86400)return Math.round(s/3600)+'h ago';return Math.round(s/86400)+'d ago'};
+const TY={PushEvent:'Push',CreateEvent:'Create',PullRequestEvent:'Pull request',IssuesEvent:'Issue',WatchEvent:'Star',ForkEvent:'Fork',DeleteEvent:'Delete',ReleaseEvent:'Release',IssueCommentEvent:'Comment'};
+try{
+  const [u,repos,ev]=await Promise.all([J(`https://api.github.com/users/${U}`),J(`https://api.github.com/users/${U}/repos?per_page=100&sort=updated`),J(`https://api.github.com/users/${U}/events/public?per_page=30`)]);
+  document.getElementById('gRepos').textContent=u.public_repos;
+  document.getElementById('gSince').textContent='Member since '+new Date(u.created_at).getFullYear();
+  const counts={};repos.forEach(r=>{if(r.language)counts[r.language]=(counts[r.language]||0)+1});
+  const top=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,6),max=top.length?top[0][1]:1;
+  document.getElementById('gLang').innerHTML=top.length?top.map(([k,v])=>`<div class="r"><span>${k}</span><span class="t"><i style="width:${Math.round(v/max*100)}%"></i></span><span class="p">${v}</span></div>`).join(''):'<span class="cap">No language data</span>';
+  const rows=ev.filter(e=>TY[e.type]).slice(0,8);
+  document.getElementById('gPush').textContent=ev.length?ago(ev[0].created_at):'—';
+  document.getElementById('gFeed').innerHTML=rows.map(e=>{
+    const msg=e.type==='PushEvent'&&e.payload.commits&&e.payload.commits.length?e.payload.commits[e.payload.commits.length-1].message.split('\n')[0]:e.repo.name.split('/')[1];
+    return `<div class="e"><span class="ty">${TY[e.type]}</span><span class="rp">${msg.slice(0,110)}</span><span class="wn">${ago(e.created_at)}</span></div>`}).join('')||'<span class="cap">No recent public events</span>';
+  document.getElementById('gRepoList').innerHTML=repos.slice(0,8).map(r=>`<a class="rp-row" href="${r.html_url}" target="_blank" rel="noopener"><span class="nm">${r.name}</span><span class="ds">${r.description?r.description.slice(0,120):'—'}</span><span class="lg">${r.language||'—'}</span><span class="up">${ago(r.updated_at)}</span></a>`).join('');
+  S.textContent='Live · '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});B.textContent=u.public_repos+' public repos';
+}catch(err){
+  S.textContent='GitHub API unavailable';B.textContent='API unavailable';
+  document.getElementById('gLang').innerHTML='<span class="cap">Unavailable</span>';
+  document.getElementById('gFeed').innerHTML='<span class="cap">Unavailable — API rate limit or offline</span>';
+  document.getElementById('gRepoList').innerHTML='<div class="rp-row"><span class="nm">Unavailable</span><span class="ds">The GitHub API did not respond. Repository list is public at github.com/PuditC.</span></div>';
+}
+})();
+</script>
+</body>
+</html>

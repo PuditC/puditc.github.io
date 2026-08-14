@@ -1,46 +1,33 @@
 # Pudit Portfolio
 
-A personal portfolio website built with React.
+A personal portfolio site — plain HTML, CSS and JavaScript. No framework, no build step,
+no runtime dependencies.
 
-## 🚀 Auto-Deployment
+## 📁 Project structure
 
-This project is configured with GitHub Actions for automatic deployment to GitHub Pages. Every time you push changes to the `main` or `master` branch, the site will automatically:
+- `site/` — the site itself. This is what gets published.
+- `scripts/check-links.mjs` — smoke test: every local link in `site/` must resolve.
+- `.github/workflows/` — GitHub Actions configuration.
+- `src/`, `public/` — the previous React version. No longer deployed; kept pending removal.
 
-1. Build the React application
-2. Deploy to GitHub Pages
+## 📦 Local development
 
-## 📦 Local Development
+There is nothing to install and nothing to compile. Edit the files in `site/` and reload.
 
-To run the project locally:
+To preview over HTTP (needed for the pages that call the GitHub API):
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm start
+python -m http.server 8080 --directory site
+# then open http://127.0.0.1:8080/
 ```
 
-## 🛠️ Available Scripts
+## 🛠️ Available scripts
 
-- `npm start` - Runs the app in development mode
-- `npm run build` - Builds the app for production
-- `npm run deploy` - Manually deploy to GitHub Pages
-- `npm test` - Launches the test runner
+- `npm run check` — verify every local link in `site/` points at a file that exists
+- `npm run deploy` — manually publish `site/` to GitHub Pages
 
-## 📁 Project Structure
+## 🚀 Deployment
 
-- `src/` - React source code
-- `public/` - Static assets
-- `.github/workflows/` - GitHub Actions configuration
-- `build/` - Production build output (generated)
-
-## 🔧 Deployment
-
-The deployment is handled automatically by GitHub Actions. The workflow:
-- Triggers on pushes to main/master branch
-- Installs Node.js dependencies
-- Builds the React application
-- Deploys to GitHub Pages using the `gh-pages` package
-
-No manual intervention required! 🎉 
+GitHub Actions publishes `site/` to the `gh-pages` branch on every push to `main` — no install,
+no build. A second workflow runs the link check and a gitleaks secret scan on every push and
+pull request.

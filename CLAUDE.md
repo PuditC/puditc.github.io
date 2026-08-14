@@ -76,9 +76,10 @@ stops a light flash on a dark-theme reload. Keep it when adding a page.
 
 ### The work plates — `site/index.html`
 
-Eight `.pl` cards in a 12-column grid: `.pl` spans 4, `.pl.w6` spans 6. **Every row must add up
-to 12** or the grid's rule-coloured background shows through as a grey block. Current tiling is
-`6+6 / 6+6 / 4+4+4 / 6+6`. Adding or removing a card means re-tiling the whole set.
+Nine project cards plus the About call-to-action, in a 12-column grid: `.pl` spans 4, `.pl.w6`
+spans 6. **Every row must add up to 12** or the grid's rule-coloured background shows through as
+a grey block. Current tiling is `6+6 / 6+6 / 4+4+4 / 4+4+4`, the last cell being the CTA. Adding
+or removing a card means re-tiling the whole set and renumbering every `.ix`.
 
 Screenshots are greyscaled by CSS and only regain colour on hover — so capture them at normal
 colour and let the stylesheet do it.
@@ -94,9 +95,30 @@ Live at **https://puditc.github.io/**. The repo was renamed `oampudit.github.io`
 serves at the root when the two match. The local folder still carries the old name; that is
 cosmetic and affects nothing.
 
+## Findability
+
+The site is meant to be found — it is how freelance work arrives — so every page carries a
+`<meta name="description">`, a `<link rel="canonical">` on `https://puditc.github.io/…`, the
+Open Graph set (`og:title` / `og:description` / `og:url` / `og:image`) and
+`twitter:card=summary_large_image`. `site/index.html` additionally carries a `Person` JSON-LD
+block.
+
+**Adding a page means updating four things:** its own head block, `site/sitemap.xml`, any link
+to it, and `npm run check`. Skipping the sitemap is the easy one to forget.
+
+`og-image.png` is a 1508×792 (1.91:1) capture of the light-theme hero. If the hero copy changes,
+recapture it — and keep the `og:image:width` / `og:image:height` tags matching the real file, or
+some scrapers drop the preview.
+
+`favicon.svg` draws its "P" as paths with `fill-rule="evenodd"`, not as `<text>` — favicon
+renderers do not load webfonts, so a text-based icon renders blank.
+
 ## Conventions
 
 - The résumé PDF is deliberately **not** published. It lives in `.private/` (gitignored) and
   there is no download link anywhere on the site — the owner hands it out directly.
 - Project cards state what is actually true today. If a project's status changes, the card and
   `site/signals.html`'s band both need updating.
+- **Crafnia is not declared as the owner's in machine-readable metadata.** The JSON-LD `sameAs`
+  lists GitHub only. The brand is deliberately person-neutral on its own site, so do not add
+  crafnia.com to structured data even though the work is credited in the page copy.

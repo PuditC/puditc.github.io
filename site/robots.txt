@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://puditc.github.io/sitemap.xml

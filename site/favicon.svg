@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" fill="#0c0c0c"/>
+  <!-- P as paths, not text: favicon renderers do not load webfonts.
+       evenodd turns the second subpath into the counter. -->
+  <path fill="#fbfaf8" fill-rule="evenodd"
+        d="M14 12h18a14 14 0 0 1 0 28H24v12H14z
+           M24 21v10h8a5 5 0 0 0 0-10z"/>
+</svg>

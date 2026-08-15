@@ -1,9 +1,0 @@
-/* Fonts (Inter / JetBrains Mono / Instrument) are loaded via a non-blocking
-   <link> in public/index.html so they don't block first paint. Body font +
-   background are set from the design tokens in theme.css. */
-
-body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}

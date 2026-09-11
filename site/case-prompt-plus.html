@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Prompt Plus Accounting — Case study · Pudit Chokmeesuk</title>
-<meta name="description" content="Case study: a bilingual accounting-firm site whose own staff edit every page, price and post — plus a Thai statutory filing calendar kept in code. React, Vite, Express.">
+<meta name="description" content="Case study: a bilingual accounting-firm site whose own staff edit every page, price and post — plus a Thai statutory filing calendar kept in code. React, Vite, Firebase.">
 <link rel="canonical" href="https://puditc.github.io/case-prompt-plus.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="article">
@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://puditc.github.io/assets/shot-promptplus.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"CreativeWork","name":"Prompt Plus Accounting","description":"Case study: a bilingual accounting-firm site whose own staff edit every page, price and post — plus a Thai statutory filing calendar kept in code. React, Vite, Express.","url":"https://puditc.github.io/case-prompt-plus.html","image":"https://puditc.github.io/assets/shot-promptplus.jpg","author":{"@type":"Person","name":"Pudit Chokmeesuk","url":"https://puditc.github.io/"},"keywords":["React","Vite","Express"]}
+{"@context":"https://schema.org","@type":"CreativeWork","name":"Prompt Plus Accounting","description":"Case study: a bilingual accounting-firm site whose own staff edit every page, price and post — plus a Thai statutory filing calendar kept in code. React, Vite, Firebase.","url":"https://puditc.github.io/case-prompt-plus.html","image":"https://puditc.github.io/assets/shot-promptplus-2026.png","author":{"@type":"Person","name":"Pudit Chokmeesuk","url":"https://puditc.github.io/"},"keywords":["React","Vite","Firebase","Cloud Functions"]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Work","item":"https://puditc.github.io/"},{"@type":"ListItem","position":2,"name":"Prompt Plus Accounting","item":"https://puditc.github.io/case-prompt-plus.html"}]}
@@ -98,7 +98,7 @@ td .au{font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transf
     <span class="m" style="color:var(--faint)">Case study 01 — Client work</span>
     <h1 class="pt mid"><span><i>Prompt Plus</i></span></h1>
     <div class="pt out mid"><span><i>Accounting</i></span></div>
-    <div class="blk"><span>Solo build</span><span>React · Vite · Express</span><span>2026</span><span class="sp">Bilingual TH / EN</span></div>
+    <div class="blk"><span>Solo build</span><span>React · Vite · Firebase</span><span>2026</span><span class="sp">Bilingual TH / EN</span></div>
   </header>
 
   <section class="lede g12">
@@ -110,29 +110,29 @@ td .au{font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transf
       <h4>Project facts</h4>
       <dl>
         <div class="r"><dt>Client</dt><dd>Prompt Plus Accounting, Bangkok</dd></div>
-        <div class="r"><dt>Role</dt><dd>Sole engineer — architecture, both front-ends, API</dd></div>
-        <div class="r"><dt>Scope</dt><dd>7-page bilingual site, admin CMS, content API</dd></div>
-        <div class="r"><dt>Stack</dt><dd>React · Vite · react-router · Express · JSON storage</dd></div>
-        <div class="r"><dt>Status</dt><dd>Feature complete; hardening before production</dd></div>
+        <div class="r"><dt>Role</dt><dd>Sole engineer — architecture, both front-ends, backend, security review, deployment</dd></div>
+        <div class="r"><dt>Scope</dt><dd>Bilingual marketing site, admin CMS, statutory filing calendar, automated delivery</dd></div>
+        <div class="r"><dt>Stack</dt><dd>React · Vite · Firebase Hosting · Cloud Functions · Firestore</dd></div>
+        <div class="r"><dt>Status</dt><dd>Live since September 2026 at promptplus-accounting.com</dd></div>
       </dl>
     </div>
   </section>
 
   <div class="shots rv3">
-    <figure><div class="fr"><img src="assets/shot-promptplus.jpg" alt="Prompt Plus home page, Thai" width="1568" height="699"></div><figcaption><span>01 Home</span><span>main-web</span></figcaption></figure>
+    <figure><div class="fr"><img src="assets/shot-promptplus-2026.png" alt="Prompt Plus Accounting home page, Thai" width="1440" height="900"></div><figcaption><span>01 Home</span><span>main-web</span></figcaption></figure>
     <figure><div class="fr"><img src="assets/shot-promptplus-calendar.png" alt="Thai statutory filing calendar for 2569" width="1230" height="667"></div><figcaption><span>02 Filing calendar</span><span>main-web</span></figcaption></figure>
-    <figure><div class="fr ph-media"><span>Screenshot — admin content editor</span></div><figcaption><span>03 Admin</span><span>admin-web</span></figcaption></figure>
+    <figure><div class="fr ph-media"><span>Screenshot — admin content editor</span></div><figcaption><span>03 Admin</span><span>Admin app</span></figcaption></figure>
   </div>
 </div>
 
 <div class="wrap sec">
   <div class="sh"><h2 data-sc>Three parts</h2><span class="n">One server, two apps</span><span class="c">Architecture</span></div>
   <div class="parts g12 rv3">
-    <div class="part"><span class="k">Part 01 — main-web</span><h3>Public site</h3><p>Seven pages on react-router hash routing, so it drops onto any static host. Every string is a <code>{th, en}</code> pair, switchable on every page. Content arrives from <code>/api/content</code>; if the API is unreachable the app falls back to the seed bundled at build time, so the site never renders empty.</p></div>
-    <div class="part"><span class="k">Part 02 — admin-web</span><h3>Admin app</h3><p>Posts (articles and news, both languages) and site content. The editing forms are generated from the shape of the content JSON — add a field to <code>content.json</code> and the form picks it up with no admin code change. New posts appear on the site immediately; the home page pulls the three latest.</p></div>
-    <div class="part"><span class="k">Part 03 — server</span><h3>Content API</h3><p>An Express app that serves both builds and stores content as JSON files on disk — no database to administer for a site this size. Single-admin login issues a bearer token; reads are public, every write is authenticated.</p></div>
+    <div class="part"><span class="k">Part 01 — main-web</span><h3>Public site</h3><p>Seven pages on react-router hash routing, so it drops onto any static host. Every string is a <code>{th, en}</code> pair, switchable on every page. Content is fetched at runtime, and if that fetch fails the app falls back to a snapshot bundled at build time — so the site never renders empty, and never renders twice.</p></div>
+    <div class="part"><span class="k">Part 02 — admin</span><h3>Admin app</h3><p>Posts (articles and news, both languages) and site content. The editing forms are generated from the shape of the content JSON — add a field to <code>content.json</code> and the form picks it up with no admin code change. New posts appear on the site immediately; the home page pulls the three latest.</p></div>
+    <div class="part"><span class="k">Part 03 — backend</span><h3>Content service</h3><p>Serverless functions in Singapore, backed by a managed document store. The same service renders finished HTML for crawlers, so the marketing pages are readable without running JavaScript. Published content is public by design; everything that changes it sits behind the firm’s own Google accounts.</p></div>
   </div>
-  <div class="flow"><b>Browser</b><span>→</span><b>GET /api/content</b><span>→</span><b>content.json</b><span>·</span><b>Admin</b><span>→</span><b>PUT /api/content</b><span>(Bearer)</span><span>→</span><b>same file</b><span>·</span><b>API down</b><span>→</span><b>bundled seed</b></div>
+  <div class="flow"><b>Reader</b><span>→</span><b>edge cache</b><span>→</span><b>prerendered page</b><span>·</span><b>Crawler</b><span>→</span><b>server-rendered HTML</b><span>·</span><b>Staff</b><span>→</span><b>Google sign-in</b><span>→</span><b>admin</b><span>·</span><b>Backend down</b><span>→</span><b>bundled snapshot</b></div>
 </div>
 
 <div class="wrap sec">
@@ -154,23 +154,14 @@ export const MONTHLY = [
       <span class="n">Decision 02</span>
       <h3>The admin form is generated from the content, not hand-built.</h3>
       <p>A hand-written form per page would have meant an admin release every time the firm wanted a new FAQ row or a price line. Instead the editor walks the content JSON and renders a field per leaf, grouped by page. Adding a field on the server is the whole change.</p>
-      <p>Reads are public and writes need a bearer token, so the eight routes below are the entire API surface — small enough to keep in your head.</p>
-      <table>
-        <thead><tr><th>Method</th><th>Path</th><th>Auth</th></tr></thead>
-        <tbody>
-          <tr><td><code>POST</code></td><td><code>/api/login</code></td><td><span class="au">Public</span></td></tr>
-          <tr><td><code>GET</code></td><td><code>/api/content</code></td><td><span class="au">Public</span></td></tr>
-          <tr><td><code>PUT</code></td><td><code>/api/content</code></td><td><span class="au">Bearer</span></td></tr>
-          <tr><td><code>GET</code></td><td><code>/api/posts</code></td><td><span class="au">Public</span></td></tr>
-          <tr><td><code>POST · PUT · DELETE</code></td><td><code>/api/posts/:id</code></td><td><span class="au">Bearer</span></td></tr>
-        </tbody>
-      </table>
+      <p>The trade is deliberate: the admin gains a field the moment the backend does, and no admin release is needed to expose it. The cost is that the editor must be defensive about shapes it has never seen — which is where most of its code went.</p>
+
     </div>
     <div class="dec">
       <span class="n">Decision 03</span>
-      <h3>JSON files instead of a database.</h3>
-      <p>Seven pages and a weekly post do not need Postgres. Content and posts are two JSON files read and written synchronously, which makes backup a file copy and rollback a checkout. If the firm outgrows it, the API shape stays and the storage layer is the only thing that changes.</p>
-    </div>
+      <h3>No deploy key exists to steal.</h3>
+      <p>Releases run from CI, which is the usual place a long-lived cloud credential ends up sitting in a settings page forever. This one authenticates by short-lived federated identity instead, scoped to a single repository — so there is no key file to leak, rotate, or forget. Every release also re-checks the live site afterwards: response headers, crawler visibility, and a frame-by-frame check that the page does not repaint after first render.</p>
+</div>
     <div class="dec">
       <span class="n">Decision 04</span>
       <h3>A quote wizard instead of a contact form.</h3>

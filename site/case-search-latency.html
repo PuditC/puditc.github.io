@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Two minutes to one second — Case study · Pudit Chokmeesuk</title>
+<meta name="description" content="Case study: a keyword search that averaged 121 seconds was waiting, not working. How Query Store and execution plans found a parallelism stall: a reversible stopgap brought it to about a second, then a query rewrite fixed the cause.">
+<link rel="canonical" href="https://puditc.github.io/case-search-latency.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Pudit Chokmeesuk">
+<meta property="og:locale" content="en">
+<meta property="og:title" content="Two minutes to one second — Case study">
+<meta property="og:description" content="A SQL search that averaged 121 seconds was waiting, not working. Diagnosis, a reversible stopgap, and the rewrite that fixed the cause.">
+<meta property="og:url" content="https://puditc.github.io/case-search-latency.html">
+<meta property="og:image" content="https://puditc.github.io/og-image.png">
+<meta property="og:image:width" content="1508">
+<meta property="og:image:height" content="792">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Two minutes to one second: a SQL search that was waiting, not working","description":"Case study: a keyword search that averaged 121 seconds was waiting, not working. Query Store and execution plans found a parallelism stall; a query rewrite fixed the cause.","url":"https://puditc.github.io/case-search-latency.html","image":"https://puditc.github.io/og-image.png","author":{"@type":"Person","name":"Pudit Chokmeesuk","url":"https://puditc.github.io/"},"keywords":["SQL Server","Query Store","Performance tuning","ASP.NET","Azure"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Work","item":"https://puditc.github.io/"},{"@type":"ListItem","position":2,"name":"Two minutes to one second","item":"https://puditc.github.io/case-search-latency.html"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="poster.css">
+<script>(()=>{try{const t=localStorage.getItem('pf-poster-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+<style>
+.lede{padding-block:clamp(24px,4vw,44px);border-bottom:1px solid var(--rule)}
+.lede .tx{grid-column:span 7}
+.lede .tx p{margin:0 0 18px;font-size:clamp(1rem,1.5vw,1.28rem);line-height:1.45;letter-spacing:-.015em;text-wrap:pretty}
+.lede .tx p:last-child{margin-bottom:0}
+.lede .tx b{background:var(--tint);padding:0 .1em;box-decoration-break:clone}
+.lede .fk{grid-column:9 / span 4;border:1px solid var(--rule);padding:clamp(14px,1.6vw,20px);align-self:start}
+.lede .fk h4{margin:0 0 12px;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.lede .fk dl{margin:0;display:flex;flex-direction:column}
+.lede .fk .r{display:grid;grid-template-columns:88px 1fr;gap:12px;padding-block:8px;border-bottom:1px solid var(--rule);font-size:.86rem}
+.lede .fk .r:last-child{border-bottom:0}
+.lede .fk dt{font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding-top:3px}
+.lede .fk dd{margin:0;color:var(--ink)}
+.dec{grid-column:span 6;padding-block:clamp(20px,3vw,32px);border-top:1px solid var(--rule)}
+.dec.full{grid-column:span 12}
+.dec .n{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.dec h3{margin:10px 0 10px;font-weight:700;font-size:clamp(1.1rem,1.9vw,1.5rem);letter-spacing:-.025em;line-height:1.1}
+.dec p{margin:0 0 12px;color:var(--mute);font-size:.92rem;text-wrap:pretty}
+.dec p:last-child{margin-bottom:0}
+.dec code{font-family:var(--mono);font-size:.7rem;color:var(--ink);background:var(--tint);padding:2px 5px}
+pre{margin:14px 0 0;padding:14px;border:1px solid var(--rule);background:var(--tint);overflow-x:auto;font-family:var(--mono);font-size:.68rem;line-height:1.7;color:var(--ink)}
+pre .c{color:var(--faint)}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.84rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule)}
+th{font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:400}
+.nums{grid-column:span 3;text-align:left}
+.nums b{display:block;font-weight:700;font-size:clamp(2rem,4.4vw,3.4rem);letter-spacing:-.04em;line-height:1}
+.nums span{display:block;margin-top:8px;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+[data-theme=dark] .nums span{color:rgba(0,0,0,.55)}
+.left{grid-column:span 12}
+.left ul{margin:0;padding:0;list-style:none}
+.left li{position:relative;padding-left:24px;margin-bottom:10px;color:var(--mute);font-size:.92rem;text-wrap:pretty}
+.left li::before{content:"□";position:absolute;left:0;top:-.05em;color:var(--ink);font-size:.8rem}
+.nav-p{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,24px);padding-block:clamp(24px,4vw,44px);border-top:2px solid var(--ink)}
+.nav-p a{grid-column:span 6;display:flex;flex-direction:column;gap:8px;padding:clamp(16px,2vw,24px);border:1px solid var(--rule);transition:background .35s,color .35s}
+.nav-p a:hover{background:var(--ink);color:var(--paper)}
+.nav-p a span{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.nav-p a b{font-weight:700;font-size:clamp(1.1rem,2.2vw,1.7rem);letter-spacing:-.03em}
+@media(max-width:1100px){.lede .tx{grid-column:span 12}.lede .fk{grid-column:1 / span 12;margin-top:20px}.dec{grid-column:span 12}.nums{grid-column:span 6}.nav-p a{grid-column:span 12}}
+</style>
+</head>
+<body>
+<div class="grid-ov"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<div class="wrap">
+  <div class="top">
+    <span class="l"><a href="index.html">← Portfolio</a></span>
+    <nav><a href="index.html" data-sc>Work</a><a href="about.html" data-sc>About</a><a href="signals.html" data-sc>Signals</a><a href="contact.html" data-sc>Contact</a></nav>
+    <span class="r"><button class="tgl" data-tgl>Dark</button></span>
+  </div>
+
+  <header class="poster">
+    <span class="m" style="color:var(--faint)">Case study 02 — Performance</span>
+    <h1 class="pt mid"><span><i>Two minutes</i></span></h1>
+    <div class="pt out mid"><span><i>to one second</i></span></div>
+    <div class="blk"><span>Diagnosis → stopgap → fix</span><span>SQL · ASP.NET · Azure</span><span>2026</span><span class="sp">121 s → ~1 s</span></div>
+  </header>
+
+  <section class="lede g12">
+    <div class="tx">
+      <p>The main search in an enterprise asset-management web app averaged 121 seconds, and the worst case took 15.7 minutes. <b>The query was not slow because it was working hard. It was slow because it was waiting.</b></p>
+      <p>This is how I found that out, how I made it bearable without touching the application, and how I then removed the cause rather than the symptom.</p>
+    </div>
+    <div class="fk">
+      <h4>Project facts</h4>
+      <dl>
+        <div class="r"><dt>System</dt><dd>Enterprise asset-management web app on Azure</dd></div>
+        <div class="r"><dt>Stack</dt><dd>ASP.NET · Azure SQL Managed Instance</dd></div>
+        <div class="r"><dt>Role</dt><dd>Investigation, stopgap script, query rewrite, equivalence proof</dd></div>
+        <div class="r"><dt>Tools</dt><dd>Query Store · execution plans</dd></div>
+      </dl>
+    </div>
+  </section>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>Diagnosis</h2><span class="n">Symptom to cause</span><span class="c">What the data said</span></div>
+  <div class="g12 rv3">
+    <div class="dec">
+      <span class="n">01 — Symptom</span>
+      <h3>A keyword name search, 121 s on average.</h3>
+      <p>Users typed a name and waited. Average 121 seconds, worst case 15.7 minutes.</p>
+    </div>
+    <div class="dec">
+      <span class="n">02 — What it was not</span>
+      <h3>Not fragmentation.</h3>
+      <p>The obvious first move is an index rebuild. It cut logical reads by up to 80%, yet elapsed time did not change. Fewer reads with the same wait means reads were never the bottleneck. A rebuild is a treatment, not a diagnosis.</p>
+    </div>
+    <div class="dec full">
+      <span class="n">03 — The diagnosis</span>
+      <h3>About 5 s of CPU for 121 s of elapsed time.</h3>
+      <p>Query Store and the execution plans showed a parallel plan with three merge joins, each fed by order-preserving exchanges. Worker threads were idle more than 95% of the time. The query used about 5 seconds of CPU over 121 seconds elapsed. The work was not slow, it was stalled: the query was waiting, not working.</p>
+    </div>
+  </div>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <div class="nums"><b>121 s</b><span>Average, before</span></div>
+    <div class="nums"><b>15.7 min</b><span>Worst case, before</span></div>
+    <div class="nums"><b>~5 s</b><span>CPU in that 121 s</span></div>
+    <div class="nums"><b>&gt;95%</b><span>Worker time idle</span></div>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>Response</h2><span class="n">Three moves</span><span class="c">In order</span></div>
+  <div class="g12 rv3">
+    <div class="dec">
+      <span class="n">04 — The stopgap</span>
+      <h3>Reversible first, with a rollback.</h3>
+      <p>I tested options against production using Query Store, then wrote a script, with a rollback, that capped database-scoped <code>MAXDOP</code> at 4. The DBA team applied it. Search dropped to 0.8–1.0 s in production.</p>
+    </div>
+    <div class="dec">
+      <span class="n">05 — Tried and dropped</span>
+      <h3>MAXDOP 1 everywhere.</h3>
+      <p>I also tried running the whole database at <code>MAXDOP 1</code>, with Query Store hints giving export queries more threads. Search was 0.7–2.5 s, but exports broke, so it was not kept. A faster search that breaks another feature is not a fix.</p>
+    </div>
+    <div class="dec full">
+      <span class="n">06 — The real fix</span>
+      <h3>Per-row lookups the optimizer cannot stall.</h3>
+      <p>A cap on parallelism hides the stall; it does not remove it. I rewrote the view's three owner joins as per-row <code>TOP (1)</code> lookups with <code>OUTER APPLY</code>. Each one uses an index seek, so the stalling plan can no longer be chosen. The pattern, with made-up names:</p>
+<pre><span class="c">-- before: a join the optimizer may turn into a merge join</span>
+SELECT i.*, o.owner_name
+FROM items i
+LEFT JOIN owners o ON o.item_id = i.id;
+
+<span class="c">-- after: one seek per row, no ordered exchange to wait on</span>
+SELECT i.*, o.owner_name
+FROM items i
+OUTER APPLY (
+  SELECT TOP (1) owner_name
+  FROM owners
+  WHERE item_id = i.id
+  ORDER BY owner_name
+) o;</pre>
+      <p style="margin-top:14px">In QA the query went from 30.1 s to 0.48 s. I deployed it to production with parallelism back to the default and every hint removed. A production spot check showed 1.6 s.</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>Result</h2><span class="n">Before and after</span><span class="c">Measured</span></div>
+  <div class="tw rv3">
+    <table>
+      <thead><tr><th>Stage</th><th>Environment</th><th>Search time</th></tr></thead>
+      <tbody>
+        <tr><td>Before</td><td>Production</td><td>121 s average, 15.7 min worst</td></tr>
+        <tr><td>Stopgap: MAXDOP capped at 4</td><td>Production</td><td>0.8–1.0 s</td></tr>
+        <tr><td>Dropped: MAXDOP 1 plus hints</td><td>Tested</td><td>0.7–2.5 s, exports broke</td></tr>
+        <tr><td>Rewrite, before</td><td>QA</td><td>30.1 s</td></tr>
+        <tr><td>Rewrite, after</td><td>QA</td><td>0.48 s</td></tr>
+        <tr><td>Rewrite, default parallelism, no hints</td><td>Production spot check</td><td>1.6 s</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>Proof and a side fix</h2><span class="n">Before shipping</span><span class="c">And one more</span></div>
+  <div class="g12 rv3">
+    <div class="dec">
+      <span class="n">07 — How I proved it</span>
+      <h3>Row by row, both directions.</h3>
+      <p>A rewrite that is fast but returns different rows is a bug. Before shipping I compared the old and new view output row by row: 26 columns, zero differences in either direction.</p>
+    </div>
+    <div class="dec">
+      <span class="n">08 — A side fix</span>
+      <h3>A 191 MB report file.</h3>
+      <p>A report export produced a 191 MB file because it used an old text-based <code>.xls</code> format. A hotfix that streams a real <code>.xlsx</code> brought it to 20–30 MB.</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sh"><h2 data-sc>What I'd tell another engineer</h2><span class="n">Five lessons</span><span class="c">Short list</span></div>
+  <div class="g12 rv3">
+    <div class="left">
+      <ul>
+        <li>Compare CPU time with elapsed time first. A big gap means waiting, and no amount of index work fixes waiting.</li>
+        <li>A rebuild that lowers reads but not elapsed time is a hypothesis disproved, not a result.</li>
+        <li>Ship a reversible stopgap first, with a rollback, then fix the cause.</li>
+        <li>Prove a rewrite is equivalent, row by row, before it ships.</li>
+        <li>Once the real fix is in, remove the hints and put settings back to default.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="nav-p">
+    <a href="case-prompt-plus.html"><span>Other case study</span><b>Prompt Plus Accounting →</b></a>
+    <a href="contact.html"><span>Questions about this</span><b>Contact →</b></a>
+  </div>
+  <footer><span>Case study 02 — Search latency</span><span>Bangkok · UTC+7</span></footer>
+</div>
+<script src="poster.js"></script>
+</body>
+</html>

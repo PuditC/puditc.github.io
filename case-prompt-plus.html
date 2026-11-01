@@ -180,14 +180,15 @@ export const MONTHLY = [
 </div>
 
 <div class="wrap sec">
-  <div class="sh"><h2 data-sc>Still open</h2><span class="n">Before production</span><span class="c">Honest list</span></div>
+  <div class="sh"><h2 data-sc>Closed before launch</h2><span class="n">Since the first draft</span><span class="c">Honest list</span></div>
   <div class="g12 rv3">
     <div class="left">
       <ul>
-        <li>Rotate <code>ADMIN_PASSWORD</code> off the default and run behind HTTPS.</li>
-        <li>Tokens are in memory — a server restart logs the admin out. Persist or move to signed tokens.</li>
-        <li>Replace the image placeholders with the firm's own photography.</li>
-        <li>Wire the contact, quote and newsletter forms to email or LINE; today they are front-end only.</li>
+        <li>The shared admin password is gone: staff sign in with their own Google accounts, checked against an allowlist.</li>
+        <li>Sessions no longer live in server memory — Firebase Authentication holds them, so a restart logs nobody out.</li>
+        <li>The firm's own photography replaced every placeholder, uploaded by staff through the admin.</li>
+        <li>Contact and quote forms save to the database, appear in the admin, and send the office an email alert.</li>
+        <li>Still open: an automatic reply to whoever sent the form — written and tested, waiting on the firm's mail credential.</li>
       </ul>
     </div>
     <div class="left">
@@ -199,6 +200,7 @@ export const MONTHLY = [
 <div class="wrap">
   <div class="nav-p">
     <a href="index.html"><span>Back to</span><b>All work →</b></a>
+    <a href="case-search-latency.html"><span>Other case study</span><b>Search latency →</b></a>
     <a href="contact.html"><span>Questions about this build</span><b>Contact →</b></a>
   </div>
   <footer><span>Case study 01 — Prompt Plus Accounting</span><span>Bangkok · UTC+7</span></footer>

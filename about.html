@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>About — Pudit Chokmeesuk, developer in Bangkok</title>
-<meta name="description" content="Seven years in IT, five of them building software: infrastructure engineer to full-stack developer — insurance core rewrites, an Azure module practice, and mobile apps in both stores.">
+<meta name="description" content="Seven years in IT, five of them building software: infrastructure engineer to full-stack developer — insurance core rewrites, an Azure module practice, and mobile apps on Google Play.">
 <link rel="canonical" href="https://puditc.github.io/about.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Pudit Chokmeesuk">
 <meta property="og:locale" content="en">
 <meta property="og:title" content="About — Pudit Chokmeesuk, developer in Bangkok">
-<meta property="og:description" content="Seven years in IT, five of them building software: infrastructure engineer to full-stack developer — insurance core rewrites, an Azure module practice, and mobile apps in both stores.">
+<meta property="og:description" content="Seven years in IT, five of them building software: infrastructure engineer to full-stack developer — insurance core rewrites, an Azure module practice, and mobile apps on Google Play.">
 <meta property="og:url" content="https://puditc.github.io/about.html">
 <meta property="og:image" content="https://puditc.github.io/og-image.png">
 <meta property="og:image:width" content="1508">
@@ -35,7 +35,7 @@
 .intro .bio p b{background:var(--tint);padding:0 .1em;box-decoration-break:clone}
 .intro .por{grid-column:8 / span 5}
 .intro .por .fr{border:1px solid var(--rule);background:var(--tint);aspect-ratio:4/4.6;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
-.intro .por .fr img{width:100%;height:100%;object-fit:contain;object-position:bottom center;display:block}
+.intro .por .fr img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .intro .por .cap{margin-top:8px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
 /* timeline */
 .role{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,24px);padding-block:clamp(22px,3vw,36px);border-bottom:1px solid var(--rule);position:relative}
@@ -85,12 +85,12 @@
 
   <section class="intro g12">
     <div class="bio">
-      <p>I started on the infrastructure side — Windows Server, Active Directory and Exchange for banks, exchanges and insurers. <b>Fixing other people's systems at 2am is a good education in what to build.</b></p>
-      <p>Since 2021 I've been writing them instead: a group-insurance core rewrite, a customer claims app in Flutter, and now web and application modules on Azure as a senior developer at PTT Digital Solutions. The work is usually less about new features than about making the second year of a system survivable.</p>
-      <p>On the side I ship small things end to end — a Bitcoin block clock, a gold-portfolio tracker, a running-form analyser, a multiplayer deduction game — mostly to keep the deploy-to-production muscle working.</p>
+      <p>I started on the infrastructure side — Windows Server, Active Directory and Exchange for a stock exchange, insurers, agri-food and automotive groups. <b>Fixing other people's systems at 2am is a good education in what to build.</b></p>
+      <p>Since 2021 I've been writing them instead: a group-insurance core rewrite, the Group Member Care app in Flutter, and now web and application modules on Azure as a senior developer at PTT Digital Solutions. The work is usually less about new features than about making the second year of a system survivable.</p>
+      <p>On the side I ship small things end to end — a Bitcoin block clock, a gold-portfolio tracker, a running-form analyser, a multiplayer deduction game — mostly to keep the deploy-to-production muscle working. Outside working hours I also build and run Prompt Plus Accounting (freelance) and four live Crafnia web products.</p>
     </div>
     <div class="por">
-      <div class="fr"><img src="assets/profile.png" alt="Pudit Chokmeesuk" width="1799" height="2400"></div>
+      <div class="fr"><img src="assets/profile-2026.jpg" alt="Pudit Chokmeesuk" width="889" height="889"></div>
       <div class="cap"><span>Pudit Chokmeesuk</span><span>Senior developer · Bangkok</span></div>
     </div>
   </section>
@@ -104,10 +104,10 @@
       <div class="who"><h3>PTT Digital Solutions</h3><span class="rl">Senior software developer</span><span class="lc">Bangkok, Thailand</span></div>
       <div class="what">
         <ul>
-          <li>Full-stack delivery of web and application solutions on Azure.</li>
-          <li>Designed and deployed modules with clean business integration.</li>
-          <li>Hardened systems via Azure Functions, Web Apps and Key Vault.</li>
-          <li>Authored module documentation, runbooks and onboarding playbooks.</li>
+          <li>Primary developer of an Azure asset-management platform tracking about 130,000 assets: three web portals, a REST API, timer-triggered Azure Functions and a Flutter RFID scanner app on Azure SQL Managed Instance.</li>
+          <li>Cut a production name search from a 121 s average to 1.6 s — diagnosed a stalling parallel plan, wrote the DBA-applied MAXDOP stopgap, then a permanent query rewrite (<a href="case-search-latency.html">case study</a>); export file 191 MB to 20–30 MB.</li>
+          <li>Turned around a procurement system in two months: 2,530 quality-gate issues to 0, 85% backend and 64% frontend coverage.</li>
+          <li>Maintain 5 live applications across Angular, React and .NET; closed security findings on four more; ship through GitLab CI with security scans, health checks, rollback-ready scripts and English runbooks.</li>
         </ul>
         <div class="tg"><span>C#</span><span>.NET Core</span><span>Azure</span><span>Angular</span><span>SQL Server</span></div>
       </div>
@@ -117,8 +117,9 @@
       <div class="who"><h3>Bangkok Life Assurance</h3><span class="rl">Software developer</span><span class="lc">Bangkok, Thailand</span></div>
       <div class="what">
         <ul>
-          <li>Rewrote the group-insurance core; lifted performance and security across the board.</li>
-          <li>Designed the customer mobile app: claims, notifications, history.</li>
+          <li>Led up to 3 developers (team of 7–8) rebuilding the group-insurance sales workflow: ran requirement sessions with executives, set the plan and timeline, reviewed the team's work before each release.</li>
+          <li>Rewrote the core group-insurance system in C#/.NET Core and Oracle; built the premium-calculation and work-tracking systems.</li>
+          <li>Redesigned and rebuilt the Group Member Care app in Flutter in 2021 (Google Play, 100k+ downloads since 2017): UX/UI, online claims and Firebase in-app notifications.</li>
           <li>Owned full release cycles in C#, .NET Core, Oracle, Dart and Flutter.</li>
         </ul>
         <div class="tg"><span>C#</span><span>.NET Core</span><span>Oracle</span><span>Dart</span><span>Flutter</span></div>
@@ -129,9 +130,9 @@
       <div class="who"><h3>BizCon Solutions</h3><span class="rl">System engineer</span><span class="lc">Bangkok, Thailand</span></div>
       <div class="what">
         <ul>
-          <li>Operated infrastructure for a stock exchange, insurers and industrial groups.</li>
-          <li>Migrations and installations: Windows Server, Active Directory, Exchange.</li>
-          <li>Reduced incident frequency through proactive monitoring.</li>
+          <li>Administered infrastructure for a stock exchange, insurers, agri-food and automotive groups.</li>
+          <li>Active Directory upgrades at 5+ companies and a one-jump Exchange migration for a 24/7 mail system.</li>
+          <li>Reduced downtime through proactive monitoring.</li>
         </ul>
         <div class="tg"><span>Windows Server</span><span>Active Directory</span><span>Exchange</span><span>System admin</span></div>
       </div>
@@ -139,7 +140,7 @@
   </div>
 
   <div class="g12 gap rv3">
-    <div class="tile s3"><h4>Education</h4><div class="hd">Master of Management (Business Management)</div><p>Mahidol University · 2017–2020 · GPA 3.35</p></div>
+    <div class="tile s3"><h4>Education</h4><div class="hd">Master of Management (Business Management)</div><p>Mahidol University · 2017–2020 · KMUTNB Accelerate Master's Program (4+1) with Mahidol CMMU, concurrent with the B.Eng.</p></div>
     <div class="tile s3"><h4>Education</h4><div class="hd">B.Eng, Electrical Engineering</div><p>KMUTNB · 2015–2019 · GPA 3.24</p></div>
     <div class="tile s6"><h4>Where the two meet</h4><p>An engineering degree explains the systems instinct; a business degree explains why I ask what a module is for before designing it. Both are why I write the runbook.</p></div>
   </div>

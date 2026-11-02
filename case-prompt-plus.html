@@ -184,6 +184,8 @@ export const MONTHLY = [
   <div class="g12 rv3">
     <div class="left">
       <ul>
+        <li>A pre-launch security review closed a host-header SSRF and a stored-XSS path, and added security headers, rate limiting and server-side validation.</li>
+        <li>Deploys are keyless: GitHub Actions authenticates to Google Cloud with Workload Identity Federation, so no cloud key is stored anywhere; tests, secret scanning and a dependency audit run on every release, and the live site is checked after each deploy.</li>
         <li>The shared admin password is gone: staff sign in with their own Google accounts, checked against an allowlist.</li>
         <li>Sessions no longer live in server memory — Firebase Authentication holds them, so a restart logs nobody out.</li>
         <li>The firm's own photography replaced every placeholder, uploaded by staff through the admin.</li>

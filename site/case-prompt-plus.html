@@ -13,7 +13,7 @@
 <meta property="og:title" content="Prompt Plus Accounting — Case study">
 <meta property="og:description" content="A bilingual accounting-firm site whose own staff edit every page, price and post — plus a Thai statutory filing calendar kept in code.">
 <meta property="og:url" content="https://puditc.github.io/case-prompt-plus.html">
-<meta property="og:image" content="https://puditc.github.io/assets/shot-promptplus.jpg">
+<meta property="og:image" content="https://puditc.github.io/assets/shot-promptplus-2026.png">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CreativeWork","name":"Prompt Plus Accounting","description":"Case study: a bilingual accounting-firm site whose own staff edit every page, price and post — plus a Thai statutory filing calendar kept in code. React, Vite, Firebase.","url":"https://puditc.github.io/case-prompt-plus.html","image":"https://puditc.github.io/assets/shot-promptplus-2026.png","author":{"@type":"Person","name":"Pudit Chokmeesuk","url":"https://puditc.github.io/"},"keywords":["React","Vite","Firebase","Cloud Functions"]}
@@ -128,7 +128,7 @@ td .au{font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transf
 <div class="wrap sec">
   <div class="sh"><h2 data-sc>Three parts</h2><span class="n">One server, two apps</span><span class="c">Architecture</span></div>
   <div class="parts g12 rv3">
-    <div class="part"><span class="k">Part 01 — main-web</span><h3>Public site</h3><p>Seven pages on react-router hash routing, so it drops onto any static host. Every string is a <code>{th, en}</code> pair, switchable on every page. Content is fetched at runtime, and if that fetch fails the app falls back to a snapshot bundled at build time — so the site never renders empty, and never renders twice.</p></div>
+    <div class="part"><span class="k">Part 01 — main-web</span><h3>Public site</h3><p>Pages have real /th and /en URLs, rendered on the server for crawlers; the admin app uses hash routing. Every string is a <code>{th, en}</code> pair, switchable on every page. Content is fetched at runtime, and if that fetch fails the app falls back to a snapshot bundled at build time — so the site never renders empty, and never renders twice.</p></div>
     <div class="part"><span class="k">Part 02 — admin</span><h3>Admin app</h3><p>Posts (articles and news, both languages) and site content. The editing forms are generated from the shape of the content JSON — add a field to <code>content.json</code> and the form picks it up with no admin code change. New posts appear on the site immediately; the home page pulls the three latest.</p></div>
     <div class="part"><span class="k">Part 03 — backend</span><h3>Content service</h3><p>Serverless functions in Singapore, backed by a managed document store. The same service renders finished HTML for crawlers, so the marketing pages are readable without running JavaScript. Published content is public by design; everything that changes it sits behind the firm’s own Google accounts.</p></div>
   </div>
